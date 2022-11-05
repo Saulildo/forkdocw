@@ -496,7 +496,7 @@ mainSection:Toggle({
 
 mainSection:Toggle({
     Title = "no ragdoll",
-    Default = false
+    Default = true
     },
     function(val)
         for i,v in pairs(getgc(true)) do
