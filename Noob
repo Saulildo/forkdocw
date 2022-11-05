@@ -378,7 +378,7 @@ local miscMain = misc:Button("misc", "rbxassetid://7743875962")
 local miscSection = miscMain:Section("the stuff that dont fit anywhere", "Left")
 local visualsMain = visuals:Button("visuals", "rbxassetid://7743875962")
 local visualsSection = visualsMain:Section(":eye:", "Left")
-
+ui:Destroy()
 mainSection:Button({
     Title = "get all emotes",
     ButtonName = "get",
