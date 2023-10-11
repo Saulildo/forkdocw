@@ -1,10 +1,5 @@
 local gamesList = {
-    [1494262959] = 'Criminality';
     [1390601379] = 'Combat Warriors';
-    [358276974]  = 'Apoc 2';
-    [3495983524] = 'Apoc 2';
-    [187796008]  = 'Those Who Remain';
-    [171336322]  = 'testing';
 }
 
 local RemoteEvent = Instance.new("RemoteEvent")
@@ -176,7 +171,6 @@ local KillSays = {
 if gamesList[game.GameId] == "Combat Warriors" then
 	--// Esp & Long string
 	local LongString = 'F'
-	local Esp = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
 	local SimplePath = loadstring(game:HttpGet("https://raw.githubusercontent.com/wicked-wlzard/simplepath/main/src/SimplePath.lua"))()
 	local Path = nil
 
@@ -387,30 +381,6 @@ if gamesList[game.GameId] == "Combat Warriors" then
 		end)
 	end
 
-	local VisualTab = LeftMiscTab:AddTab("Visuals") do
-		VisualTab:AddToggle("Esp", { Text = "Esp" }):AddColorPicker("EspColor", { Default = Color3.new(1, 1, 1) })
-		VisualTab:AddToggle("EspBox", { Text = "Boxes" }):AddKeyPicker("EspBind", { Text = "Esp", Default = "None" })
-		VisualTab:AddToggle("EspName", { Text = "Names" })
-
-		VisualTab:AddDivider()
-		VisualTab:AddToggle("EspTracer", { Text = "Tracers" })
-		VisualTab:AddToggle("EspDistance", { Text = "Distance" })
-		VisualTab:AddToggle("EspFaceCamera", { Text = "Face camera" })
-
-		VisualTab:AddDivider()
-		VisualTab:AddToggle("EspHighlight", { Text = "Highlight enemy" }):AddColorPicker("HighlightColor", { Default = Color3.new(1, 1, 1) })
-
-		Toggles.Esp:OnChanged(function(State) Esp:Toggle(State) end)
-		Toggles.EspBox:OnChanged(function(State) Esp.Boxes = State end)
-		Toggles.EspName:OnChanged(function(State) Esp.Names = State end)
-
-		Toggles.EspTracer:OnChanged(function(State) Esp.Tracers = State  end)
-		Toggles.EspDistance:OnChanged(function(State) Esp.Distance = State end)
-		Toggles.EspFaceCamera:OnChanged(function(State) Esp.FaceCamera = State end)
-
-		Toggles.EspHighlight:OnChanged(function(State) end)
-		Options.EspColor:OnChanged(function() Esp.Color = Options.EspColor.Value end)
-	end
 
 	local VisualTab2 = LeftMiscTab:AddTab("More Visuals") do
 		VisualTab2:AddToggle("ArrowBeam", { Text = "Arrow beam" }):AddColorPicker("BeamStartColor", { Default = Color3.new(1, 1, 1) }):AddColorPicker("BeamEndColor", { Default = Color3.new(1, 1, 1) })
