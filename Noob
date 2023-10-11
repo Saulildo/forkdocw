@@ -388,7 +388,7 @@ if gamesList[game.GameId] == "Combat Warriors" then
 	end
 
 	local VisualTab = LeftMiscTab:AddTab("Visuals") do
-	--	VisualTab:AddToggle("Esp", { Text = "Esp" }):AddColorPicker("EspColor", { Default = Color3.new(1, 1, 1) })
+		VisualTab:AddToggle("Esp", { Text = "Esp" }):AddColorPicker("EspColor", { Default = Color3.new(1, 1, 1) })
 		VisualTab:AddToggle("EspBox", { Text = "Boxes" }):AddKeyPicker("EspBind", { Text = "Esp", Default = "None" })
 		VisualTab:AddToggle("EspName", { Text = "Names" })
 
