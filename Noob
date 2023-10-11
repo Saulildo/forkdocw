@@ -50,7 +50,7 @@ task.spawn(function()
 end)
 
 --// Load the libraries
-local Repo         = "https://raw.githubusercontent.com/Saulildo/LinoriaLibMOBILE/main/"
+local Repo         = "https://raw.githubusercontent.com/HTDBarsi/LinoriaLib/main/"
 local Library      = loadstring(game:HttpGet( Repo .. "Library.lua" ))()
 local SaveManager  = loadstring(game:HttpGet( Repo .. "addons/SaveManager.lua" ))()
 local ThemeManager = loadstring(game:HttpGet( Repo .. "addons/ThemeManager.lua" ))()
