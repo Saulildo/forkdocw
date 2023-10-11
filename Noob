@@ -1279,7 +1279,7 @@ if gamesList[game.GameId] == "Combat Warriors" then
 
 	while true do
 		if Options.FlyBind.Mode ~= "None" then Toggles.Fly:SetValue(Options.FlyBind:GetState()) end
-		if Options.EspBind.Mode ~= "None" then Toggles.Esp:SetValue(Options.EspBind:GetState()) end
+	--	if Options.EspBind.Mode ~= "None" then Toggles.Esp:SetValue(Options.EspBind:GetState()) end
 		if Options.AutoParryBind.Mode ~= "None" then Toggles.AutoParry:SetValue(Options.AutoParryBind:GetState()) end
 
 		local MyRoot = Character and Character:FindFirstChild("HumanoidRootPart")
