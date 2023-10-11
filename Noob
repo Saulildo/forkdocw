@@ -1,7 +1,7 @@
 local gamesList = {
     [1390601379] = 'Combat Warriors';
 }
-
+local getsynasset = getcustomasset
 local RemoteEvent = Instance.new("RemoteEvent")
 local RemoteFunction = Instance.new("RemoteFunction")
 
