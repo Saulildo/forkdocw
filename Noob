@@ -1,6 +1,10 @@
 local gamesList = {
     [1390601379] = 'Combat Warriors';
 }
+getgenv().getsynasset = nil
+	getgenv().getcustomasset = nil
+	getsynasset = nil
+	getcustomasset = nil
 local getsynasset = getcustomasset
 local RemoteEvent = Instance.new("RemoteEvent")
 local RemoteFunction = Instance.new("RemoteFunction")
