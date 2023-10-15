@@ -133,7 +133,6 @@ local KillSays = {
 }
 	--// Esp & Long string
 	local LongString = 'F'
-        local Esp = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
 	local SimplePath = loadstring(game:HttpGet("https://raw.githubusercontent.com/wicked-wlzard/simplepath/main/src/SimplePath.lua"))()
 	local Path = nil
 
@@ -218,15 +217,6 @@ local KillSays = {
 			hookfunc(v, function() return Instance.new("BindableEvent").Event:Wait() end)
 		end
 	end
-
-	--// PolyLine for Arrow trajectory
-	local PolyLine = PolyLineDynamic.new() 
-	PolyLine.Color = Color3.new(1, 1, 1)
-	PolyLine.Opacity = 1
-	PolyLine.Outlined = true
-	PolyLine.Thickness = 1.5
-	PolyLine.OutlineColor = Color3.fromRGB(1, 1, 1)
-	PolyLine.OutlineOpacity = 1
 
 	--// Grab MainCaster
 	local MainCaster = nil
@@ -319,12 +309,7 @@ local KillSays = {
 
 	local VisualTab2 = LeftMiscTab:AddTab("More Visuals") do
 		VisualTab2:AddToggle("ArrowBeam", { Text = "Arrow beam" }):AddColorPicker("BeamStartColor", { Default = Color3.new(1, 1, 1) }):AddColorPicker("BeamEndColor", { Default = Color3.new(1, 1, 1) })
-		VisualTab2:AddToggle("ArrowTrajectory", { Text = "Arrow trajectory" }):AddColorPicker("TrajectoryColor", { Default = Color3.new(1, 1, 1) })
-
-		Options.TrajectoryColor:OnChanged(function(State)
-			PolyLine.Color = State
-		end)
-	end
+	--	VisualTab2:AddToggle("ArrowTrajectory", { Text = "Arrow trajectory" }):AddColorPicker("TrajectoryColor", { Default = Color3.new(1, 1, 1) })
 
 	local MiscTab = RightMiscTab:AddTab("Miscellaneous") do
 		MiscTab:AddToggle("InfiniteAir", { Text = "Infinite air", Tooltip = "Never drown again" })
