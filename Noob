@@ -133,6 +133,7 @@ local KillSays = {
 }
 	--// Esp & Long string
 	local LongString = 'F'
+        local Esp = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
 	local SimplePath = loadstring(game:HttpGet("https://raw.githubusercontent.com/wicked-wlzard/simplepath/main/src/SimplePath.lua"))()
 	local Path = nil
 
