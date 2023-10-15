@@ -1,11 +1,6 @@
 local gamesList = {
     [1390601379] = 'Combat Warriors';
 }
-getgenv().getsynasset = nil
-	getgenv().getcustomasset = nil
-	getsynasset = nil
-	getcustomasset = nil
-local getsynasset = getcustomasset
 local RemoteEvent = Instance.new("RemoteEvent")
 local RemoteFunction = Instance.new("RemoteFunction")
 
@@ -23,35 +18,6 @@ end;
 
 if not game.Players.LocalPlayer.Character then MessageBox("Please spawn in before executing", 0) return end
 if _G.ShIn then MessageBox("You're already executed!") return end _G.ShIn = true
-
---// Sound related stuff (Loads sounds from website)
-local SoundsFolder = "samuelhook/sounds/"
-
-local LoadSound = function(FileName)
-    return getsynasset('samuelhook/sounds/' .. FileName)
-end
---// End of sound related stuff
-
---// Loads all files and puts them into the hitsound table
-local SoundsLoaded = false
-local HitSoundTable = {}
-local KillSoundTable = {}
-
-task.spawn(function()
-    table.foreach(listfiles(SoundsFolder), function(Index, FileName)
-        local Split = string.split(FileName, "samuelhook\\sounds\\")
-        local Split2 = string.split(Split[2], ".")
-        
-        if table.find(Split2, "mp3") or table.find(Split2, "wav") then
-            local Split3 = string.split(Split2[1], "-")
-
-            if string.find(FileName, "Hitsound") then HitSoundTable[Split3[1]] = LoadSound(Split[2]) end
-            if string.find(FileName, "Killsound") then KillSoundTable[Split3[1]] = LoadSound(Split[2]) end
-        end
-    end)
-
-    SoundsLoaded = true
-end)
 
 --// Load the libraries
 local Repo         = "https://raw.githubusercontent.com/HTDBarsi/LinoriaLib/main/"
@@ -178,37 +144,9 @@ if gamesList[game.GameId] == "Combat Warriors" then
 	local SimplePath = loadstring(game:HttpGet("https://raw.githubusercontent.com/wicked-wlzard/simplepath/main/src/SimplePath.lua"))()
 	local Path = nil
 
-	local ShootSoundTable = {}
-	local OldSounds = {}
 	
 	local Melee = game.ReplicatedStorage.Shared.Assets.Melee
 	local Ranged = ReplicatedStorage.Shared.Assets.Ranged
-
-	OldSounds["Mace"] = { Melee.Mace.Sounds.Hits["1"].SoundId, Melee.Mace.Sounds.Hits["2"].SoundId }
-	OldSounds["Humanoid"] = Ranged.Sounds.MaterialsHit.Humanoid.SoundId
-	OldSounds["HeavyBow"] = Ranged.Longbow.Sounds.Fire.SoundId
-	OldSounds["Killsound"] = Ranged.Parent.Sounds.KillSound.SoundId
-	OldSounds["IronSword"] = { Melee.IronSword.Sounds.Hits["1"].SoundId, Melee.IronSword.Sounds.Hits["2"].SoundId }
-
-	for _,v in pairs(Ranged:GetChildren()) do
-		local Sounds = v:FindFirstChild("Sounds")
-		local Fire = Sounds and Sounds:FindFirstChild("Fire")
-
-		if Fire then
-			OldSounds[v.Name] = Fire.SoundId
-		end
-	end
-
-	table.foreach(listfiles(SoundsFolder), function(Index, FileName)
-		local Split = string.split(FileName, "samuelhook\\sounds\\")
-		local Split2 = string.split(Split[2], ".")
-		
-		if table.find(Split2, "mp3") or table.find(Split2, "wav") then
-			local Split3 = string.split(Split2[1], "-")
-
-			if string.find(FileName, "Shoot") then ShootSoundTable[Split3[1]] = LoadSound(Split[2]) end
-		end
-	end)
 
 	--// Main tabs
 	local CombatTab = Window:AddTab("Combat")
@@ -346,13 +284,13 @@ if gamesList[game.GameId] == "Combat Warriors" then
 	local Combat = RightCombatTab:AddTab("Combat") do
 		Combat:AddToggle("Ragebot", { Text = "Ragebot", Tooltip = "(PROJECTILES ONLY NOT RPG THO) Will shoot your projectiles automatically very blantant and hit players" })
 		Combat:AddToggle("KillAura", { Text = "Killaura", Tooltip = "Hits near players whenever you have a melee out" })
-		Combat:AddToggle("AutoParry", { Text = "Auto parry", Tooltip = "Automatically parries near players whom are swinging" }):AddKeyPicker("AutoParryBind", { Text = "Autoparry", Default = "None" })
+	--	Combat:AddToggle("AutoParry", { Text = "Auto parry", Tooltip = "Automatically parries near players whom are swinging" }):AddKeyPicker("AutoParryBind", { Text = "Autoparry", Default = "None" })
 		Combat:AddToggle("SkillAura", { Text = "Skillaura", Tooltip = "Uses your skills endlessly to easily kill players" })
 		--Combat:AddToggle("InfiniteMeleeRange", { Text = "Infinite melee range", Tooltip = "Lets you cross map hit people with melees (you need killaura on)" })
 		
 		Combat:AddSlider("AuraRange", { Text = "Aura range", Default = 1, Min = 1, Max = 12, Rounding = 0 })
-		Combat:AddSlider("ParryRange", { Text = "Parry range", Default = 1, Min = 1, Max = 25, Rounding = 0 })
-		Combat:AddSlider("ParryChance", { Text = "Parry chance", Default = 1, Min = 1, Max = 100, Rounding = 0 })
+	--	Combat:AddSlider("ParryRange", { Text = "Parry range", Default = 1, Min = 1, Max = 25, Rounding = 0 })
+	--	Combat:AddSlider("ParryChance", { Text = "Parry chance", Default = 1, Min = 1, Max = 100, Rounding = 0 })
 
 		Combat:AddDivider()
 		Combat:AddToggle("FakeSwing", { Text = "Fake swing", Tooltip = "Will play swing animation to trick people trying to parry" })
@@ -499,87 +437,14 @@ if gamesList[game.GameId] == "Combat Warriors" then
 	local MiscTab4 = LeftMiscTab2:AddTab("Misc 3") do
 		MiscTab4:AddToggle("CrashServer", { Text = "Crash server", Tooltip = "Duud idek how I found this but gg lets have some fun" })
 
-		local HitsoundDrop = MiscTab4:AddDropdown("HitSounds", { Text = "Hit sounds", Default = 1, Values = {"Default"} })
-		local KillsoundDrop = MiscTab4:AddDropdown("KillSounds", { Text = "Kill sounds", Default = 1, Values = {"Default"} })
-		local ShootsoundDrop = MiscTab4:AddDropdown("ShootSounds", { Text = "Shoot sounds", Default = 1, Values = {"Default"} })
+	--	local HitsoundDrop = MiscTab4:AddDropdown("HitSounds", { Text = "Hit sounds", Default = 1, Values = {"Default"} })
+	--	local KillsoundDrop = MiscTab4:AddDropdown("KillSounds", { Text = "Kill sounds", Default = 1, Values = {"Default"} })
+	--	local ShootsoundDrop = MiscTab4:AddDropdown("ShootSounds", { Text = "Shoot sounds", Default = 1, Values = {"Default"} })
 
-		MiscTab4:AddSlider("HitVolume", { Text = "Hit volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
-		MiscTab4:AddSlider("KillVolume", { Text = "Kill volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
-		MiscTab4:AddSlider("ShootVolume", { Text = "Shoot volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
+	--	MiscTab4:AddSlider("HitVolume", { Text = "Hit volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
+	--	MiscTab4:AddSlider("KillVolume", { Text = "Kill volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
+	--	MiscTab4:AddSlider("ShootVolume", { Text = "Shoot volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
 
-		--// Insert all the sounds into the dropdowns
-		for i,v in pairs(HitSoundTable) do table.insert(HitsoundDrop.Values, i) end
-		for i,v in pairs(KillSoundTable) do table.insert(KillsoundDrop.Values, i) end
-		for i,v in pairs(ShootSoundTable) do table.insert(ShootsoundDrop.Values, i) end
-
-		--// Set the dropdown values & display it to the dropdown
-		HitsoundDrop:SetValues() 
-		HitsoundDrop:Display()
-
-		KillsoundDrop:SetValues() 
-		KillsoundDrop:Display()
-
-		ShootsoundDrop:SetValues()
-		ShootsoundDrop:Display()
-
-		Options.HitVolume:OnChanged(function(State)
-			Ranged.Sounds.MaterialsHit.Humanoid.Volume = State 
-		end)
-
-		Options.KillVolume:OnChanged(function(State)
-			Ranged.Parent.Sounds.KillSound.Volume = State
-		end)
-
-		Options.ShootVolume:OnChanged(function(State)
-			for _,v in pairs(Ranged:GetChildren()) do
-				local Sound = v:FindFirstChild("Sounds")
-				local Fire = Sound and Sound:FindFirstChild("Fire")
-
-				if Fire then Fire.Volume = State end
-			end
-		end)
-
-		Options.HitSounds:OnChanged(function(State)
-			if State == "Default" then
-				Ranged.Sounds.MaterialsHit.Humanoid.SoundId = OldSounds["Humanoid"]
-				Melee.Mace.Sounds.Hits["1"].SoundId = OldSounds["Mace"][1]
-				Melee.Mace.Sounds.Hits["2"].SoundId = OldSounds["Mace"][2]
-				Melee.IronSword.Sounds.Hits["1"].SoundId = OldSounds["IronSword"][1]
-				Melee.IronSword.Sounds.Hits["2"].SoundId = OldSounds["IronSword"][2]
-			else 
-				Ranged.Sounds.MaterialsHit.Humanoid.SoundId = HitSoundTable[State]
-				Melee.Mace.Sounds.Hits["1"].SoundId = HitSoundTable[State]
-				Melee.Mace.Sounds.Hits["2"].SoundId = HitSoundTable[State]
-				Melee.IronSword.Sounds.Hits["1"].SoundId = HitSoundTable[State]
-				Melee.IronSword.Sounds.Hits["2"].SoundId = HitSoundTable[State]
-			end
-		end)
-
-		Options.KillSounds:OnChanged(function(State)
-			if State == "Default" then
-				Ranged.Parent.Sounds.KillSound.SoundId = OldSounds["Killsound"]
-			else Ranged.Parent.Sounds.KillSound.SoundId = KillSoundTable[State]
-			end
-		end)
-
-		Options.ShootSounds:OnChanged(function(State)
-			if State == "Default" then
-				for _,v in pairs(Ranged:GetChildren()) do
-					local Sound = v:FindFirstChild("Sounds")
-					local Fire = Sound and Sound:FindFirstChild("Fire")
-
-					if Fire then Fire.SoundId = OldSounds[v.Name] end
-				end
-			else
-				for _,v in pairs(Ranged:GetChildren()) do
-					local Sound = v:FindFirstChild("Sounds")
-					local Fire = Sound and Sound:FindFirstChild("Fire")
-
-					if Fire then Fire.SoundId = ShootSoundTable[State] end
-				end
-			end
-		end)
-	end
 
 	function IsVisible(TargetCharacter, MaxDistance, IgnoreList)
 		local PlayerHitbox = TargetCharacter and TargetCharacter:FindFirstChild(Options.Hitbox.Value)
@@ -1203,6 +1068,7 @@ if gamesList[game.GameId] == "Combat Warriors" then
     	VirtualInputManager:SendKeyEvent(0, Enum.KeyCode.F, 0, game)
     end
 
+-- {
     local OldPlaySound = SoundHandler.playSound
     SoundHandler.playSound = function(Arg)
 		if typeof(Arg.parent) == "Instance" and Arg.parent and Arg.parent.Parent and Arg.parent.Parent and Arg.parent.Parent.Parent and Arg.parent.Parent.Parent.Parent then
@@ -1230,7 +1096,7 @@ if gamesList[game.GameId] == "Combat Warriors" then
 
 	    return OldPlaySound(Arg)
 	end
-
+} --
 	local OldIndex
 	OldIndex = hookmetamethod(Character, '__index', function(epic, epic2)
         if tostring(epic) == "Humanoid" and tostring(epic2) == "WalkSpeed" then return 16 end
