@@ -9,8 +9,8 @@ local safeInvokeServer = RemoteFunction["InvokeServer\0"]
 local safeFireBindable = BindableEvent["Fire\0"]
 local safeInvokeBindable = BindableFunction["Invoke\0"]
 
-if not game.Players.LocalPlayer.Character then MessageBox("Please spawn in before executing", 0) return end
-if _G.ShIn then MessageBox("You're already executed!") return end _G.ShIn = true
+if not game.Players.LocalPlayer.Character then warn("Please spawn in before executing") return end
+if _G.ShIn then warn("You're already executed!") return end _G.ShIn = true
 
 --// Load the libraries
 local Repo         = "https://raw.githubusercontent.com/HTDBarsi/LinoriaLib/main/"
