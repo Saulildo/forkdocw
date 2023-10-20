@@ -312,52 +312,6 @@ local KillSays = {
 	--	VisualTab2:AddToggle("ArrowTrajectory", { Text = "Arrow trajectory" }):AddColorPicker("TrajectoryColor", { Default = Color3.new(1, 1, 1) })
 end
 
-	local MiscTab = RightMiscTab:AddTab("Miscellaneous") do
-		MiscTab:AddToggle("InfiniteAir", { Text = "Infinite air", Tooltip = "Never drown again" })
-		MiscTab:AddToggle("InstantRevive", { Text = "Instant revive", Tooltip = "Instantly revives you upon being down" })
-		MiscTab:AddToggle("InfiniteStamina", { Text = "Infinite stamina", Tooltip = "Allows you to run forever without consequences" })
-
-		MiscTab:AddDivider()
-		MiscTab:AddToggle("NoRagdoll", { Text = "No ragdoll", Tooltip = "You\'ll never ragdoll again" })
-		MiscTab:AddToggle("NoFallDamage", { Text = "No fall damage", Tooltip = "Never take fall damage again" })
-		MiscTab:AddToggle("NoUtilityDamage", { Text = "No utility damage", Tooltip = "You won\'t take damage from Fire/Bear traps (but not grenades)" })
-
-		MiscTab:AddDivider()
-		MiscTab:AddToggle("WalkSpeed", { Text = "Walkspeed", Tooltip = "Changes the speed you walk" })
-		MiscTab:AddToggle("JumpPower", { Text = "Jump power", Tooltip = "Changes how high you jump" })
-		MiscTab:AddToggle("EquipWeapon", { Text = "Equip weapon", Tooltip = "Equips your melee weapon" })
-		MiscTab:AddSlider("SpeedAmount", { Text = "Walkspeed amount", Default = 1, Min = 1, Max = 75, Rounding = 0 })
-		MiscTab:AddSlider("JumpPowerAmount", { Text = "Jumppower amount", Default = 1, Min = 1, Max = 150, Rounding = 0 })
-
-		MiscTab:AddDivider()
-		MiscTab:AddToggle("InfiniteJump", { Text = "Infinite jump", Tooltip = "Allows you to press space and jump infinitely" })
-		MiscTab:AddToggle("NoDashCooldown", { Text = "No dash cooldown", Tooltip = "Removes the dash cooldown you have to wait for" })
-		MiscTab:AddToggle("NoJumpCooldown", { Text = "No jump cooldown", Tooltip = "Removes the jump cooldown you have to wait for" })
-
-		MiscTab:AddDivider()
-		MiscTab:AddToggle("Killsay", { Text = "Kill say", Tooltip = "Says a funny message upon killing someone" })
-		MiscTab:AddToggle("AutoShove", { Text = "Auto shove", Tooltip = "Automatically shoves a user after they\'re parried" })
-		MiscTab:AddToggle("TeleportBehindEnemy", { Text = "Teleport behind enemy" })
-
-		MiscTab:AddDivider()
-		MiscTab:AddToggle("ResetOnEvent", { Text = "Reset on event", Tooltip = "Resets your character when a nuke/missle/blackout event happens (so they can't farm you)" })
-		MiscTab:AddToggle("InstantBearTrap", { Text = "Instant bear trap", Tooltip = "Allows you place your bear trap instantly" })
-		MiscTab:AddToggle("InstantGhostPotion", { Text = "Instant ghost potion", Tooltip = "Allows you to chug the ghost potion instantly" })
-	
-		Toggles.WalkSpeed:OnChanged(function(State)
-			if not State and Character and Character:FindFirstChild("Humanoid") then
-				Character.Humanoid.WalkSpeed = 16
-			end
-		end)
-
-		Toggles.JumpPower:OnChanged(function(State)
-			if not State and Character and Character:FindFirstChild("Humanoid") then
-				JumpConstants.JUMP_DELAY_ADD = 1;
-                Character.Humanoid.JumpPower = 50
-			end
-		end)
-end
-
 	local MiscTab2 = LeftMiscTab2:AddTab("Misc") do
 		local Debounce = false
 
