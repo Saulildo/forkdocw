@@ -310,7 +310,7 @@ local KillSays = {
 	local VisualTab2 = LeftMiscTab:AddTab("More Visuals") do
 		VisualTab2:AddToggle("ArrowBeam", { Text = "Arrow beam" }):AddColorPicker("BeamStartColor", { Default = Color3.new(1, 1, 1) }):AddColorPicker("BeamEndColor", { Default = Color3.new(1, 1, 1) })
 	--	VisualTab2:AddToggle("ArrowTrajectory", { Text = "Arrow trajectory" }):AddColorPicker("TrajectoryColor", { Default = Color3.new(1, 1, 1) })
-
+end
 	local MiscTab = RightMiscTab:AddTab("Miscellaneous") do
 		MiscTab:AddToggle("InfiniteAir", { Text = "Infinite air", Tooltip = "Never drown again" })
 		MiscTab:AddToggle("InstantRevive", { Text = "Instant revive", Tooltip = "Instantly revives you upon being down" })
@@ -422,7 +422,7 @@ local KillSays = {
 	--	MiscTab4:AddSlider("HitVolume", { Text = "Hit volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
 	--	MiscTab4:AddSlider("KillVolume", { Text = "Kill volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
 	--	MiscTab4:AddSlider("ShootVolume", { Text = "Shoot volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
-
+end
 
 	function IsVisible(TargetCharacter, MaxDistance, IgnoreList)
 		local PlayerHitbox = TargetCharacter and TargetCharacter:FindFirstChild(Options.Hitbox.Value)
