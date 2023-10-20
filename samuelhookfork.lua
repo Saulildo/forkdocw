@@ -347,26 +347,6 @@ end
 		end)
 	end
 
-	local MiscTab3 = LeftMiscTab2:AddTab("Misc 2") do
-		MiscTab3:AddToggle("InstantC4", { Text = "Instant C4", Tooltip = "Allows you to throw your C4 instantly" })
-		MiscTab3:AddToggle("AutoDetonate", { Text = "Auto detonate", Tooltip = "Automatically detonates your C4" })
-		MiscTab3:AddToggle("AutoAttachC4", { Text = "Auto attach C4", Tooltip = "Attempts to attach C4 to near players" })
-
-		MiscTab3:AddDivider()
-		MiscTab3:AddToggle("Fly", { Text = "Fly" }):AddKeyPicker("FlyBind", { Text = "Fly", Default = "None" })
-		MiscTab3:AddToggle("NoKnockback", { Text = "No knockback", Tooltip = "Removes the knockback from being hit" })
-		MiscTab3:AddToggle("NoAnimations", { Text = "No animations", Tooltip = "Breaks your animations so you can avoid parries easier" })
-		MiscTab3:AddSlider("FlySpeed", { Text = "Fly speed", Default = 0, Min = 0, Max = 0.8, Rounding = 1 })
-
-		MiscTab3:AddDivider()
-		MiscTab3:AddToggle("AvoidArrows", { Text = "Avoid arrows", Tooltip = "Teleports away from near arrows to avoid them hitting you" })
-		MiscTab3:AddToggle("ImpossibleHit", { Text = "Impossible hit", Tooltip = "Makes it impossible for most legit/rage cheats to hit you" })
-		MiscTab3:AddToggle("AutoReloadBow", { Text = "Auto reload bow", Tooltip = "Reloads your bows ammo" })
-
-		MiscTab3:AddDivider()
-		MiscTab3:AddToggle("PathfindFarm", { Text = "Pathfind farm", Tooltip = "Uses pathfinding to go to players and kill them" })
-	end
-
 	local MiscTab4 = LeftMiscTab2:AddTab("Misc 3") do
 		MiscTab4:AddToggle("CrashServer", { Text = "Crash server", Tooltip = "Duud idek how I found this but gg lets have some fun" })
 
