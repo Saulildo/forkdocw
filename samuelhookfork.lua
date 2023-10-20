@@ -311,6 +311,7 @@ local KillSays = {
 		VisualTab2:AddToggle("ArrowBeam", { Text = "Arrow beam" }):AddColorPicker("BeamStartColor", { Default = Color3.new(1, 1, 1) }):AddColorPicker("BeamEndColor", { Default = Color3.new(1, 1, 1) })
 	--	VisualTab2:AddToggle("ArrowTrajectory", { Text = "Arrow trajectory" }):AddColorPicker("TrajectoryColor", { Default = Color3.new(1, 1, 1) })
 end
+
 	local MiscTab = RightMiscTab:AddTab("Miscellaneous") do
 		MiscTab:AddToggle("InfiniteAir", { Text = "Infinite air", Tooltip = "Never drown again" })
 		MiscTab:AddToggle("InstantRevive", { Text = "Instant revive", Tooltip = "Instantly revives you upon being down" })
@@ -355,7 +356,7 @@ end
                 Character.Humanoid.JumpPower = 50
 			end
 		end)
-	end
+end
 
 	local MiscTab2 = LeftMiscTab2:AddTab("Misc") do
 		local Debounce = false
