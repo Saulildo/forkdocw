@@ -347,18 +347,6 @@ end
 		end)
 	end
 
-	local MiscTab4 = LeftMiscTab2:AddTab("Misc 3") do
-		MiscTab4:AddToggle("CrashServer", { Text = "Crash server", Tooltip = "Duud idek how I found this but gg lets have some fun" })
-
-	--	local HitsoundDrop = MiscTab4:AddDropdown("HitSounds", { Text = "Hit sounds", Default = 1, Values = {"Default"} })
-	--	local KillsoundDrop = MiscTab4:AddDropdown("KillSounds", { Text = "Kill sounds", Default = 1, Values = {"Default"} })
-	--	local ShootsoundDrop = MiscTab4:AddDropdown("ShootSounds", { Text = "Shoot sounds", Default = 1, Values = {"Default"} })
-
-	--	MiscTab4:AddSlider("HitVolume", { Text = "Hit volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
-	--	MiscTab4:AddSlider("KillVolume", { Text = "Kill volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
-	--	MiscTab4:AddSlider("ShootVolume", { Text = "Shoot volume", Default = 0.1, Min = 0.1, Max = 15, Rounding = 1 })
-end
-
 	function IsVisible(TargetCharacter, MaxDistance, IgnoreList)
 		local PlayerHitbox = TargetCharacter and TargetCharacter:FindFirstChild(Options.Hitbox.Value)
 		local PlayerPosition = PlayerHitbox and TargetCharacter[Options.Hitbox.Value].Position
