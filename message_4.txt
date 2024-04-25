@@ -242,7 +242,7 @@ local Library = {
 		[Enum.KeyCode.Period] = ".",
 		[Enum.KeyCode.Backquote] = "`",
 		[Enum.UserInputType.MouseButton1] = "MB1",
-		[Enum.UserInputType.MouseButton2] = "MB2",
+		[Enum.KeyCode.E] = "MB2",
 		[Enum.UserInputType.MouseButton3] = "MB3"
 	};
 	Connections = {};
@@ -1326,7 +1326,7 @@ do
 				Window.Dragging[2] = UDim2.new(0, Location.X - Outline.AbsolutePosition.X, 0, Location.Y - Outline.AbsolutePosition.Y)
 			end)
 			Library:Connection(game:GetService("UserInputService").InputEnded, function(Input)
-				if Input.UserInputType == Enum.UserInputType.MouseButton1 and Window.Dragging[1] then
+				if Input.UserInputType == Enum.UserInputType.Touch and Window.Dragging[1] then
 					local Location = game:GetService("UserInputService"):GetMouseLocation()
 					Window.Dragging[1] = false
 					Window.Dragging[2] = UDim2.new(0, 0, 0, 0)
