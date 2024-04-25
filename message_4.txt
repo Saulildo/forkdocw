@@ -1172,7 +1172,7 @@ do
 				end
 			end)
 
-			Icon.MouseButton1Down:Connect(function()
+			Icon.TouchTap:Connect(function()
 				ColorWindow.Visible = not ColorWindow.Visible
 				parent.ZIndex = ColorWindow.Visible and 5 or 1
 
@@ -1193,12 +1193,12 @@ do
 				ModeOutline.Visible = not ModeOutline.Visible
 			end)
 			--
-			Library:Connection(Hold.MouseButton1Down, function()
+			Library:Connection(Hold.TouchTap, function()
 				Library.CopiedColor = hsv
 				Library.CopiedAlpha = alpha
 			end)
 			--
-			Library:Connection(Toggle.MouseButton1Down, function()
+			Library:Connection(Toggle.TouchTap, function()
 				set(Library.CopiedColor or Color3.new(1,1,1), Library.CopiedAlpha or 0)
 			end)
 			--
@@ -1320,7 +1320,7 @@ do
 			}
 
 			-- // Dragging
-			Library:Connection(DragButton.MouseButton1Down, function()
+			Library:Connection(DragButton.TouchTap, function()
 				local Location = game:GetService("UserInputService"):GetMouseLocation()
 				Window.Dragging[1] = true
 				Window.Dragging[2] = UDim2.new(0, Location.X - Outline.AbsolutePosition.X, 0, Location.Y - Outline.AbsolutePosition.Y)
@@ -1478,7 +1478,7 @@ do
 				TabButton.TextColor3 = Page.Open and Color3.fromRGB(255,255,255) or Color3.fromRGB(145,145,145)
 			end
 			--
-			Library:Connection(TabButton.MouseButton1Down, function()
+			Library:Connection(TabButton.TouchTap, function()
 				if not Page.Open then
 					Page:Turn(true)
 					for _, Pages in pairs(Page.Window.Pages) do
@@ -1591,7 +1591,7 @@ do
 				New.ImageColor3 = Weapon.Open and Color3.new(1,1,1) or Color3.fromRGB(145,145,145)
 			end
 			--
-			Library:Connection(New.MouseButton1Down, function()
+			Library:Connection(New.TouchTap, function()
 				if not Weapon.Open then
 					Weapon:Turn(true)
 					for _, Weapons in pairs(Weapon.Window.Weapons) do
@@ -1831,7 +1831,7 @@ do
 				Toggle.Callback(Toggle.Toggled)
 			end
 			--
-			Library:Connection(NewToggle.MouseButton1Down, SetState)
+			Library:Connection(NewToggle.TouchTap, SetState)
 			Library:Connection(NewToggle.MouseEnter, function()
 				if not Toggle.Toggled then
 					table.insert(Library.ThemeObjects, Title)
@@ -2118,21 +2118,21 @@ do
 					ModeOutline.Visible = not ModeOutline.Visible
 				end)
 				--
-				Library:Connection(Hold.MouseButton1Down, function()
+				Library:Connection(Hold.TouchTap, function()
 					set("Hold")
 					Hold.TextColor3 = Color3.new(1,1,1)
 					Toggle.TextColor3 = Color3.fromRGB(145,145,145)
 					Always.TextColor3 = Color3.fromRGB(145,145,145)
 				end)
 				--
-				Library:Connection(Toggle.MouseButton1Down, function()
+				Library:Connection(Toggle.TouchTap, function()
 					set("Toggle")
 					Hold.TextColor3 = Color3.fromRGB(145,145,145)
 					Toggle.TextColor3 = Color3.new(1,1,1)
 					Always.TextColor3 = Color3.fromRGB(145,145,145)
 				end)
 				--
-				Library:Connection(Always.MouseButton1Down, function()
+				Library:Connection(Always.TouchTap, function()
 					set("Always")
 					Hold.TextColor3 = Color3.fromRGB(145,145,145)
 					Toggle.TextColor3 = Color3.fromRGB(145,145,145)
@@ -2451,11 +2451,11 @@ do
 				Title.TextColor3 = Color3.new(0.5686,0.5686,0.5686)
 			end)
 			--
-			Library:Connection(Add.MouseButton1Down, function()
+			Library:Connection(Add.TouchTap, function()
 				Set(Val + 1)
 			end)
 			--
-			Library:Connection(Subtract.MouseButton1Down, function()
+			Library:Connection(Subtract.TouchTap, function()
 				Set(Val - 1)
 			end)
 			--
@@ -2610,7 +2610,7 @@ do
 			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			
 			-- // Connections
-			Library:Connection(Outline.MouseButton1Down, function()
+			Library:Connection(Outline.TouchTap, function()
 				ContainerOutline.Visible = not ContainerOutline.Visible
 				if ContainerOutline.Visible then
 					NewDrop.ZIndex = 2
@@ -2644,7 +2644,7 @@ do
 			local chosen = Dropdown.Max and {} or nil
 			--
 			local function handleoptionclick(option, button, text)
-				button.MouseButton1Down:Connect(function()
+				button.TouchTap:Connect(function()
 					if Dropdown.Max then
 						if table.find(chosen, option) then
 							table.remove(chosen, table.find(chosen, option))
@@ -3138,21 +3138,21 @@ do
 				Title.TextColor3 = Color3.new(0.5686,0.5686,0.5686)
 			end)
 			--
-			Library:Connection(Hold.MouseButton1Down, function()
+			Library:Connection(Hold.TouchTap, function()
 				set("Hold")
 				Hold.TextColor3 = Color3.new(1,1,1)
 				Toggle.TextColor3 = Color3.fromRGB(145,145,145)
 				Always.TextColor3 = Color3.fromRGB(145,145,145)
 			end)
 			--
-			Library:Connection(Toggle.MouseButton1Down, function()
+			Library:Connection(Toggle.TouchTap, function()
 				set("Toggle")
 				Hold.TextColor3 = Color3.fromRGB(145,145,145)
 				Toggle.TextColor3 = Color3.new(1,1,1)
 				Always.TextColor3 = Color3.fromRGB(145,145,145)
 			end)
 			--
-			Library:Connection(Always.MouseButton1Down, function()
+			Library:Connection(Always.TouchTap, function()
 				set("Always")
 				Hold.TextColor3 = Color3.fromRGB(145,145,145)
 				Toggle.TextColor3 = Color3.fromRGB(145,145,145)
@@ -3467,7 +3467,7 @@ do
 				Outline.BorderColor3 = Color3.new(0.0392,0.0392,0.0392)
 			end)
 			--
-			Library:Connection(NewButton.MouseButton1Down, function()
+			Library:Connection(NewButton.TouchTap, function()
 				Button.Callback()
 				Value.TextColor3 = Library.Accent
 			end)
