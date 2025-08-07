@@ -1,0 +1,338 @@
+(async () => {
+  // =========================
+  // Configurações
+  // =========================
+  const MODEL = 'gpt-4o'; // ou 'gpt-4o-mini', 'gpt-4.1-mini'
+  const TEMPERATURE = 0;
+
+  // =========================
+  // Utilitários
+  // =========================
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+  const letterFromIndex = (i) => String.fromCharCode(65 + i); // 0->A, 1->B...
+  const indexFromLetter = (ch) => ch.toUpperCase().charCodeAt(0) - 65;
+
+  function uniq(arr) {
+    return [...new Set(arr)];
+  }
+
+  function extractImages(el) {
+    if (!el) return [];
+    return uniq([...el.querySelectorAll('img')].map(img => img.getAttribute('src')).filter(Boolean));
+  }
+
+  // Converte o conteúdo .ql-editor em texto "limpo" respeitando fórmulas (usa data-value)
+  function extractRichText(el) {
+    if (!el) return '';
+    const clone = el.cloneNode(true);
+    clone.querySelectorAll('script,style').forEach(n => n.remove());
+    // Troca KaTeX/Quill formula por seu TeX cru
+    clone.querySelectorAll('.ql-formula').forEach(f => {
+      const tex = f.getAttribute('data-value') || f.textContent || '';
+      const tn = document.createTextNode(tex);
+      f.parentNode.replaceChild(tn, f);
+    });
+    // <br> -> nova linha
+    clone.querySelectorAll('br').forEach(br => br.replaceWith('\n'));
+    // Ao final de cada <p>, adiciona uma quebra de linha
+    clone.querySelectorAll('p').forEach(p => {
+      p.insertAdjacentText('afterend', '\n');
+    });
+    // Espaços não separáveis
+    let text = (clone.textContent || '').replace(/\u00a0/g, ' ');
+    // Normaliza quebras
+    text = text.replace(/\s+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+    return text;
+  }
+
+  function getApiKey() {
+    let key = localStorage.getItem('OPENAI_API_KEY') || '';
+    if (!key) {
+      key = prompt('Informe sua OpenAI API Key (começa com "sk-"):\nEla será salva em localStorage e usada apenas neste domínio.');
+      if (!key) throw new Error('Chave da API não fornecida.');
+      localStorage.setItem('OPENAI_API_KEY', key);
+    }
+    if (!/^sk-/.test(key)) {
+      console.warn('A chave informada não parece começar com "sk-". Verifique se está correta.');
+    }
+    return key;
+  }
+
+  // Extrai o card do texto-base (antes das questões)
+  function extractTextoBase() {
+    // O card do texto-base nesta página tem um h6 com class "css-18a53hf" e um .ql-editor dentro
+    const card = [...document.querySelectorAll('div.MuiCard-root.css-b200pa')].find(c => c.querySelector('h6.css-18a53hf'));
+    if (!card) return { text: '', images: [] };
+    const ql = card.querySelector('.ql-editor');
+    return {
+      text: extractRichText(ql),
+      images: extractImages(ql)
+    };
+  }
+
+  // Extrai todas as questões (cards de questão possuem atributo "questao")
+  function extractQuestoes() {
+    const cards = [...document.querySelectorAll('div.MuiCard-root.css-b200pa[questao]')];
+    return cards.map((card, idx) => {
+      // Enunciado
+      const enunciadoEl = card.querySelector('.css-rcuo3b .ql-editor') || card.querySelector('.ql-editor');
+      const enunciado = extractRichText(enunciadoEl);
+      const enunciadoImages = extractImages(enunciadoEl);
+
+      // Tipo: radio (uma resposta) ou checkbox (múltiplas)
+      const isSingle = !!card.querySelector('[role="radiogroup"]');
+      const isMulti = !!card.querySelector('input[type="checkbox"]');
+
+      let alternativas = [];
+
+      if (isSingle) {
+        const radios = [...card.querySelectorAll('[role="radiogroup"] input[type="radio"]')];
+        alternativas = radios.map((input, i) => {
+          // Estrutura: o .ql-editor correspondente está como irmão do <label> dentro do mesmo bloco .css-10zfeld
+          const bloco = input.closest('div')?.closest('.MuiBox-root') || input.closest('.MuiBox-root');
+          const container = input.closest('.MuiBox-root.css-10zfeld') || bloco;
+          const ql = container?.querySelector('.ql-editor');
+          const texto = extractRichText(ql);
+          const imagens = extractImages(ql);
+          return {
+            letra: letterFromIndex(i),
+            texto,
+            imagens,
+            valueAttr: input.getAttribute('value') || String(i) // normalmente 0..4
+          };
+        });
+      } else if (isMulti) {
+        // Cada alternativa tem um bloco com <span>[checkbox]</span><div><.ql-editor/></div>
+        const checkInputs = [...card.querySelectorAll('input[type="checkbox"]')];
+        alternativas = checkInputs.map((input, i) => {
+          // O .ql-editor fica no nextElementSibling do span do checkbox
+          const span = input.closest('span');
+          const ql = span?.parentElement?.querySelector('.ql-editor');
+          const texto = extractRichText(ql);
+          const imagens = extractImages(ql);
+          return {
+            letra: letterFromIndex(i),
+            texto,
+            imagens,
+            // id costuma ser "0","1" etc para o card, mas usaremos o índice para aplicar
+            idAttr: input.id || String(i)
+          };
+        });
+      }
+
+      return {
+        numero: idx + 1,
+        tipo: isSingle ? 'única' : (isMulti ? 'múltipla' : 'desconhecido'),
+        enunciado,
+        enunciadoImages,
+        alternativas,
+        _card: card // mantemos referência para aplicar respostas depois
+      };
+    });
+  }
+
+  // Monta o conteúdo (texto + imagens) para a mensagem do usuário no Chat Completions
+  function montarConteudoUsuario(textoBase, questoes) {
+    const content = [];
+
+    // Instruções e texto-base
+    let txt = [];
+    txt.push('Você é um tutor de Física (Brasil). Resolva as questões de MRU a seguir.');
+    txt.push('- Considere os números com vírgula como separador decimal quando assim aparecerem.');
+    txt.push('- Para questões com imagens (gráficos), analise as imagens fornecidas.');
+    txt.push('- Para cada questão, devolva a resposta no formato JSON estrito (ver esquema abaixo).');
+    txt.push('');
+    if (textoBase.text?.trim()) {
+      txt.push('TEXTO-BASE:');
+      txt.push(textoBase.text.trim());
+      txt.push('');
+    }
+    txt.push('QUESTÕES:');
+
+    for (const q of questoes) {
+      txt.push(`Questão ${q.numero} (resposta ${q.tipo === 'múltipla' ? 'múltipla' : 'única'}):`);
+      if (q.enunciado?.trim()) {
+        txt.push(`Enunciado: ${q.enunciado.trim()}`);
+      }
+      txt.push('Alternativas:');
+      for (const alt of q.alternativas) {
+        const t = (alt.texto || '').trim();
+        txt.push(`${alt.letra}) ${t || '[sem texto]'}`);
+      }
+      txt.push('');
+    }
+
+    txt.push('FORMATO DE RESPOSTA (JSON estrito, sem comentários, sem texto extra):');
+    txt.push(`{
+  "answers": [
+    { "question": 1, "choices": ["A"], "reason": "breve justificativa" },
+    { "question": 2, "choices": ["B"], "reason": "..." },
+    { "question": 3, "choices": ["E"], "reason": "..." },
+    { "question": 4, "choices": ["B","D"], "reason": "..." }
+  ]
+}`);
+
+    content.push({ type: 'text', text: txt.join('\n') });
+
+    // Acrescenta imagens (texto->imagem) para dar contexto por alternativa
+    // Primeiro imagens do texto-base (se houver)
+    if (textoBase.images?.length) {
+      content.push({ type: 'text', text: 'Imagens do TEXTO-BASE:' });
+      textoBase.images.forEach((url, i) => {
+        if (url) content.push({ type: 'image_url', image_url: { url } });
+      });
+    }
+
+    // Depois, para cada questão e alternativa, adiciona as imagens
+    for (const q of questoes) {
+      if (q.enunciadoImages?.length) {
+        content.push({ type: 'text', text: `Imagens do enunciado - Questão ${q.numero}:` });
+        q.enunciadoImages.forEach(url => url && content.push({ type: 'image_url', image_url: { url } }));
+      }
+      for (const alt of q.alternativas) {
+        if (alt.imagens?.length) {
+          content.push({ type: 'text', text: `Imagem da alternativa ${alt.letra} - Questão ${q.numero}:` });
+          alt.imagens.forEach(url => url && content.push({ type: 'image_url', image_url: { url } }));
+        }
+      }
+    }
+
+    return content;
+  }
+
+  async function chamarOpenAI({ model, apiKey, content, temperature = 0 }) {
+    const body = {
+      model,
+      messages: [
+        {
+          role: 'system',
+          content: [
+            { type: 'text', text: 'Você é um assistente de Física rigoroso e objetivo. Responda em português (Brasil).' }
+          ]
+        },
+        {
+          role: 'user',
+          content
+        }
+      ],
+      temperature
+    };
+
+    const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!resp.ok) {
+      const text = await resp.text();
+      throw new Error(`Falha na API OpenAI: ${resp.status} ${resp.statusText}\n${text}`);
+    }
+
+    const data = await resp.json();
+    const msg = data.choices?.[0]?.message?.content || '';
+    return msg;
+  }
+
+  function tentarParseJSON(text) {
+    try {
+      // Alguns modelos podem devolver markdown; tentamos extrair bloco JSON
+      const m = text.match(/```json([\s\S]*?)```/i) || text.match(/```([\s\S]*?)```/i);
+      const raw = m ? m[1] : text;
+      return JSON.parse(raw);
+    } catch {
+      try { return JSON.parse(text); } catch { return null; }
+    }
+  }
+
+  // Aplica respostas na UI (marca radio/checkbox) — opcional
+  function aplicarRespostas(questoes, resultadoJSON) {
+    if (!resultadoJSON?.answers?.length) return;
+
+    const byQ = new Map(questoes.map(q => [q.numero, q]));
+    for (const ans of resultadoJSON.answers) {
+      const q = byQ.get(ans.question);
+      if (!q) continue;
+      const choices = Array.isArray(ans.choices) ? ans.choices : [];
+
+      if (q.tipo === 'única') {
+        const letra = choices[0];
+        if (!letra) continue;
+        const idx = indexFromLetter(letra);
+        const input = q._card.querySelectorAll('[role="radiogroup"] input[type="radio"]')[idx];
+        if (input) {
+          input.checked = true;
+          // Dispara eventos para React
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+          input.click();
+        }
+      } else if (q.tipo === 'múltipla') {
+        const inputs = [...q._card.querySelectorAll('input[type="checkbox"]')];
+        for (const letra of choices) {
+          const idx = indexFromLetter(letra);
+          const cb = inputs[idx];
+          if (cb && !cb.checked) {
+            cb.checked = true;
+            cb.dispatchEvent(new Event('input', { bubbles: true }));
+            cb.dispatchEvent(new Event('change', { bubbles: true }));
+            cb.click();
+          }
+        }
+      }
+    }
+  }
+
+  try {
+    // 1) Pega chave
+    const apiKey = getApiKey();
+
+    // 2) Extrai dados da página
+    const textoBase = extractTextoBase();
+    const questoes = extractQuestoes();
+
+    if (!questoes.length) {
+      console.warn('Nenhuma questão encontrada nesta página.');
+      return;
+    }
+
+    // 3) Monta conteúdo do usuário (texto + imagens)
+    const content = montarConteudoUsuario(textoBase, questoes);
+
+    console.log('Enviando para OpenAI...', { modelo: MODEL, questoes: questoes.length });
+    // 4) Chama OpenAI
+    const resposta = await chamarOpenAI({ model: MODEL, apiKey, content, temperature: TEMPERATURE });
+    console.log('Resposta bruta do modelo:\n', resposta);
+
+    // 5) Tenta parsear JSON
+    const json = tentarParseJSON(resposta);
+    if (!json) {
+      console.warn('Não foi possível interpretar JSON. Veja o texto acima.');
+      return;
+    }
+
+    console.log('JSON de respostas:', json);
+    if (Array.isArray(json.answers)) {
+      console.table(json.answers.map(a => ({
+        questão: a.question,
+        escolhas: Array.isArray(a.choices) ? a.choices.join(',') : a.choices,
+        razão: a.reason
+      })));
+    }
+
+    // 6) Pergunta se deseja aplicar na página
+    const aplicar = confirm('Aplicar as respostas automaticamente nos campos da página?');
+    if (aplicar) {
+      aplicarRespostas(questoes, json);
+      console.log('Respostas aplicadas na página (revise antes de enviar).');
+    } else {
+      console.log('Respostas NÃO aplicadas. Você pode marcar manualmente.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert(`Erro: ${err.message}`);
+  }
+})();
