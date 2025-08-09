@@ -1,321 +1,1792 @@
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
-
-Notification:Notify(
-    {Title = "Notification", Description = "Keysystem removed by ItsLouisPlayz"},
-    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "option"},
-    {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84), Callback = function(State) print(tostring(State)) end}
-)
-wait(1)
-Notification:Notify(
-    {Title = "Notificafion", Description = "Sub to ItsLouisPlayz"},
-    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "image"},
-    {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
-)
-wait(1)
-Notification:Notify(
-    {Title = "Notification", Description = "Have fun exploiting!"},
-    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "default"}
-)
-
-
-
-getgenv().Axonware = {
-    AntiParry = false;
-    AutoParry = false;
-    HitboxExpander = false;
-    HitboxSizeExpansion = 2.5;
-    AutoSlash = false;
-    AutoGloryKill = false;
-    SlashDistance = 10;
-    AutoEquipMeleeForParry = false;
-    ParryDistance = 10;
-}
-
-local Players = game:GetService('Players')
-local CoreGui = game:GetService('CoreGui')
-local ReplicatedStorage = game:GetService('ReplicatedStorage')
-
-local RunService = game:GetService('RunService')
-
-local LocalPlayer = Players.LocalPlayer
-local PlayerGui = LocalPlayer:WaitForChild('PlayerGui')
-
-local LocalMelee
-
-local BlockAnimations = {}
-local SlashAnimations = {}
-
-for _, Garbage in pairs(getgc(true)) do
-    if type(Garbage) == 'table' then
-        if rawget(Garbage, 'type') and rawget(Garbage, 'displayName') then
-            if Garbage.type == 'weapon' then
-                if rawget(Garbage, 'blockMetadata') then
-                    BlockAnimations[Garbage.displayName] = {}
-
-                    for _, Data in pairs(Garbage.blockMetadata) do
-                        BlockAnimations[Garbage.displayName][Data.animation.AnimationId] = true
+("This file was protected with MoonSec V3"):gsub(".+", (function(a)
+    _BhOBJwRImEgi = a
+end))
+return (function(r, ...)
+    local a
+    local s
+    local t
+    local d
+    local o
+    local f
+    local e = 24915
+    local n = 0
+    local l = {}
+    while n < 943 do
+        n = n + 1
+        while n < 272 and e % 2862 < 1431 do
+            n = n + 1
+            e = (e - 147) % 20939
+            local h = n + e
+            if (e % 7992) >= 3996 then
+                e = (e * 525) % 4912
+                while n < 712 and e % 7708 < 3854 do
+                    n = n + 1
+                    e = (e + 848) % 30435
+                    local a = n + e
+                    if (e % 14936) <= 7468 then
+                        e = (e * 305) % 30754
+                        local e = 62647
+                        if not l[e] then
+                            l[e] = 1
+                            d = (not d) and _ENV or d
+                        end
+                    elseif e % 2 ~= 0 then
+                        e = (e + 12) % 21866
+                        local e = 63510
+                        if not l[e] then
+                            l[e] = 1
+                        end
+                    else
+                        e = (e * 534) % 23269
+                        n = n + 1
+                        local e = 46640
+                        if not l[e] then
+                            l[e] = 1
+                            t = function(t)
+                                local e = 1
+                                local function l(n)
+                                    e = e + n
+                                    return t:sub(e - n, e - 1)
+                                end
+                                while true do
+                                    local n = l(1)
+                                    if (n == "\005") then
+                                        break
+                                    end
+                                    local e = f.byte(l(1))
+                                    local e = l(e)
+                                    if n == "\002" then
+                                        e = o.AaIZwuJB(e)
+                                    elseif n == "\003" then
+                                        e = e ~= "\000"
+                                    elseif n == "\006" then
+                                        d[e] = function(e, n)
+                                            return r(8, nil, r, n, e)
+                                        end
+                                    elseif n == "\004" then
+                                        e = d[e]
+                                    elseif n == "\000" then
+                                        e = d[e][l(f.byte(l(1)))]
+                                    end
+                                    local n = l(8)
+                                    o[n] = e
+                                end
+                            end
+                        end
                     end
                 end
-
-                if rawget(Garbage, 'slashMetadata') then
-                    SlashAnimations[Garbage.displayName] = {}
-
-                    for _, Data in pairs(Garbage.slashMetadata) do
-                        SlashAnimations[Garbage.displayName][Data.animation.AnimationId] = true
+            elseif e % 2 ~= 0 then
+                e = (e + 382) % 3522
+                while n < 779 and e % 13480 < 6740 do
+                    n = n + 1
+                    e = (e - 56) % 31334
+                    local t = n + e
+                    if (e % 5596) >= 2798 then
+                        e = (e * 441) % 22778
+                        local e = 41166
+                        if not l[e] then
+                            l[e] = 1
+                            d = getfenv and getfenv()
+                        end
+                    elseif e % 2 ~= 0 then
+                        e = (e + 195) % 41379
+                        local e = 53042
+                        if not l[e] then
+                            l[e] = 1
+                            o = {}
+                        end
+                    else
+                        e = (e + 669) % 10579
+                        n = n + 1
+                        local e = 50891
+                        if not l[e] then
+                            l[e] = 1
+                            f = string
+                        end
+                    end
+                end
+            else
+                e = (e + 853) % 34308
+                n = n + 1
+                while n < 257 and e % 16796 < 8398 do
+                    n = n + 1
+                    e = (e * 799) % 48760
+                    local d = n + e
+                    if (e % 7478) < 3739 then
+                        e = (e - 919) % 21403
+                        local e = 3322
+                        if not l[e] then
+                            l[e] = 1
+                            s = tonumber
+                        end
+                    elseif e % 2 ~= 0 then
+                        e = (e + 690) % 41114
+                        local e = 80422
+                        if not l[e] then
+                            l[e] = 1
+                            a = "\004\btonumberAaIZwuJB\000\006string\004char_POinpBY\000\006string\003subMHprwTug\000\006string\004byteLp_ALtgo\000\005table\006concatPGRbUZEQ\000\005table\006insertHlgPASOY\005"
+                        end
+                    else
+                        e = (e + 793) % 43528
+                        n = n + 1
+                        local e = 5414
+                        if not l[e] then
+                            l[e] = 1
+                        end
                     end
                 end
             end
         end
+        e = (e * 579) % 25187
     end
-end
-
-function GetMelee(Player)
-   local PossibleMelee = Player:FindFirstChildOfClass('Tool')
-
-    if PossibleMelee and PossibleMelee:FindFirstChild('Hitboxes') then
-        return PossibleMelee
+    t(a)
+    local n = {}
+    for e = 0, 255 do
+        local l = o._POinpBY(e)
+        n[e] = l
+        n[l] = e
     end
-end
-
-function GetShield(Player)
-    for _, Shield in pairs(ReplicatedStorage.Shared.Assets.Cosmetics.ParryShield.Shields:GetChildren()) do
-        local PossibleShield = Player:FindFirstChild(Shield.Name)
-
-        if PossibleShield then
-            return PossibleShield
-        end
+    local function h(e)
+        return n[e]
     end
-end
-
-function IsSlash(Player, Melee)
-    local Humanoid = Player:FindFirstChild('Humanoid')
-    
-    if Humanoid then
-        for _, Track in pairs(Humanoid:GetPlayingAnimationTracks()) do
-            if SlashAnimations[Melee][Track.Animation.AnimationId] then
-                return true
+    local f = (function(f, t)
+        local a, l = 1, 16
+        local n = {
+            {},
+            {},
+            {}
+        }
+        local d = -1
+        local e = 1
+        local r = f
+        while true do
+            n[3][o.MHprwTug(t, e, (function()
+                e = a + e
+                return e - 1
+            end)())] = (function()
+                d = d + 1
+                return d
+            end)()
+            if d == (15) then
+                d = ""
+                l = 0
+                break
             end
         end
-    end
-    
-    return false
-end
-
-function IsParry(Player, Melee)
-    local Humanoid = Player:FindFirstChild('Humanoid')
-    
-    if Humanoid then
-        for _, Track in pairs(Humanoid:GetPlayingAnimationTracks()) do
-            if BlockAnimations[Melee][Track.Animation.AnimationId] then
-                return true
+        local d = #t
+        while e < d + 1 do
+            n[2][l] = o.MHprwTug(t, e, (function()
+                e = a + e
+                return e - 1
+            end)())
+            l = l + 1
+            if l % 2 == 0 then
+                l = 0
+                o.HlgPASOY(n[1], (h((((n[3][n[2][0]] or 0) * 16) + (n[3][n[2][1]] or 0) + r) % 256)))
+                r = f + r
             end
         end
+        return o.PGRbUZEQ(n[1])
+    end)
+    t(f(95, "-03G}Pu/ULb2g+#9bu"))
+    t(f(114, "5yzclD%dMGQ/UP!YM!zzyPQUcM/PD^PdWzY*MYyDQ%cc/Qcc/lc!YlMcYQcMUdUElyUP%%YlMAJPGyz/UclQUz%=MdyGyzQzzd/Ql!UdDKPQMc!PdlycQ-PM%U%dY%Mz7dGQzylPlcUD%%!cd%y%GDyYGGc%PUclYzWUG!GDyd/McQ%DDQ!g%YyIG%zD/Qll/J%SUdl/YUzM/!/cccP8DdPPdQYDG%yyQ0cM/Yld!UlM!DMyycQ/ylDU!PUQ%dYcGzy/QUY/UzDDPd%YPdG,hU/zUQDMDGPy%d;&GlYQGYz!GQcQ!DDyMUyGPYQcyU//lcPDDY!zMdQMcQcl/PlYP!%Q!YMzIGQMyMQYDtUUDDUQdyQ6ccc.Q/cQPzDGMMMDkUGUy/Q/lyQYlDYQMc:dMGcz/tPM%M%D!UdUY/M/zyQDlzU%ll!MlP!Y%Y/Mldl0PwDD!MdUYGGD2GQ/zzUdl!UG.QGQGDyDQQcy/PDU/MdW!ldMy%MGzYPy!%dM%YYyGzylcYz!UzDc!ydzm%%!!YGyzUUUDGPy_c"))
+    local e = (124 + (function()
+        local t, n = 0, 1
+        ;(function(n, l, e)
+            e(e(l, n, e) and e(l, n, e), e(n and e, n, l and e), l(e, n, n))
+        end)(function(d, l, e)
+            if t > 272 then
+                return e
+            end
+            t = t + 1
+            n = (n + 806) % 27784
+            if (n % 1458) > 729 then
+                n = (n * 562) % 38232
+                return l(e(d, l, d), e(d, e and e, d), e(l, l and l, d) and e(e, l, l))
+            else
+                return e
+            end
+            return l
+        end, function(l, d, e)
+            if t > 472 then
+                return l
+            end
+            t = t + 1
+            n = (n * 794) % 1693
+            if (n % 982) >= 491 then
+                return d(e(d, e, e), d(l, e, l), e(l and e, e and l, l))
+            else
+                return l
+            end
+            return e
+        end, function(d, e, l)
+            if t > 178 then
+                return d
+            end
+            t = t + 1
+            n = (n * 592) % 34381
+            if (n % 1688) <= 844 then
+                n = (n - 276) % 15451
+                return e
+            else
+                return l(l(l and l, l, d and l), l(l, e, l), d(e, e, e) and e(e and e, d, d))
+            end
+            return e(l(e, d, d), e(d and l, d and d, e), e(e and d, e, e))
+        end)
+        return n
+    end)())
+    local c = o.apfVlCWI or o.KSzuk_zj
+    local _ = getfenv or (function()
+        return _ENV
+    end)
+    local a = 4
+    local t = 3
+    local j = 1
+    local d = 2
+    local function y(b, ...)
+        local u = f(e, "D;=g.M%82<UrL()Eg8.U%E<.r<).&g=2.((M>%=U..%8<EM=8M<UrE).7<))U)r2<EL=)8FLg;M%grE(6M)U;Mg.M<8);%gLME8rUMLg2gU%LrEB;MgU(E)#)<(FEg;2g(%=28UL=gg%;(.j%M2UUE(.g<882g%2<Ur=(8EL2p22(g(EE8=.8%8%<=(r(2;E.%Y.=8.L8;<%rr)iEM%<.E82<<r))g%r<Mrg)<<LL()%Frg_L2(E;gg;.)2=<.LL()l.ggM;;;gLMr2QUM=<.)88<ULU)EUUL(E=;8gL%;2%9.;#E8;UgE%.2<U)(gMgM(..%82Lr;(%Er=z2MUU2Er<(<E)=grLL)E.=g.;d;gE.r89<Mz8.)8g<8U;(2Er;LgM8r<)rU).K=gg=(8g<gr2()jLQ.ML2;U.M8UgU;L%)r%.<(LgE=L.=EM88E<(8(E<C2gE;;2%U(LEE<xEg=%28)U=2gEE;%.%MEgL2)(MEU;)=2ME2=%.rEL;)=(2E(==.828<;r%(r ;=M.U%EU%L(()wg=2M)8=<8rLEg;2=rMw8MU=rE).c<M.%.82<(L=)(_Lg=M%2(U0L<;;nEg.M<2.UgL<)(;%M)ML2;U%(=EQ;%gUMEU}U<L)Eg;<g(%=28UL1%E%;r.t8}2UUE(.VrM=.g%<2(r2(8EL=;M28r<Ar8(Uf%=..<%)UML((( M=8MU8;<%rrE=;8=UMg8.U8r))gq2gE%M88U;L;)2Arg5MM2LU%L.)ES).=M28(U=(<u8;;g(Mr2gUMLU)E=%M)M)2rU2LEE=;8gL8g<EUr(<EM;EgE%.2<LT()E2=8.=8M2Lr;(%7(gM.M8M2EL;(<E)=g.28%<=r8(L1L=%.L8z<M)E(EYM=<.)8g<2r(E.;l=LMg8%U.L_)MWU=E%88<U;Lg)2x(g=M82)UEL%)E;+g)MU8EU.L(tx;ggUM(UgU8L(E;=2.<%a2rUU(gE.;<g)2gU2U((2E8==.;8#2rrR))EU=%..%<2)r2(2E(=U.88=<;r2(re==M.U8L<.L/()_.=2.(8=r8LM);i(=rM88MUgrE).iU=)M.82U.L=)(vLgMM88rU=LMsgmEgMM<<>r;L2)E;=.8ML2;U%)r;L;MgLME2%U<LEEg;2M%%=2UUL(=E%;r.1%M2LUE(%E<=S.g%U2(L.)AEL=..%8%<^rM(UEE=(.<8=<gr2((x==8.L28<%Lm)HcM=UM48.<r)u)gR)=(M=88<LL;E%;;g3MU8UUrL.)Eq)gg%28(UML8E;;;g2Mr21U(LUEg;.gLM)2gU2L(Eg;8.;%;22Ur(pEM;UML%.2(U)(ME2;).=%8<=r;(%Er=;.M%U2ErM(<E)=g.L%(<=r8(LN%=%.r8Z:M=L.28=<(.)8M<2r()==LMLM;8U<rLI)M8;U=L<(r<)L.)2i(g=2M2MU;L%)rg gMMU2;U.LU));%g2%E<2U8(IE;;Ugr%z2MrL(%E.;)g)%M22U((=E8=E.;%22rrM(MEL;E..8U2)r.(2EE==.8%LUgLM(rB==M.r%E<.r<();r=2M^8=<2rL);&%=r%)8M<LrE)%j<=EMg82r<L=)8}Lg=M%8rU_LM)UmEg.Mr8)")
+        local n = 0
+        o.ji_kunXh(function()
+            o.zRijHZwU()
+            n = n + 1
+        end)
+        local function e(l, e)
+            if e then
+                return n
+            end
+            n = l + n
+        end
+        local l, n, h = r(0, r, e, u, o.Lp_ALtgo)
+        local function f()
+            local n, l = o.Lp_ALtgo(u, e(1, 3), e(5, 6) + 2)
+            e(2)
+            return (l * 256) + n
+        end
+        local g = true
+        local g = 0
+        local function k()
+            local e = n()
+            local n = n()
+            local t = 1
+            local d = (l(n, 1, 20) * (4294967296)) + e
+            local e = l(n, 21, 31)
+            local n = ((-1) ^ l(n, 32))
+            if (e == 0) then
+                if (d == g) then
+                    return n * 0
+                else
+                    e = 1
+                    t = 0
+                end
+            elseif (e == 2047) then
+                return (d == 0) and (n * (math.huge)) or (n * ((0/0)))
+            end
+            return o.qxtRtMCf(n, e - 1023) * (t + (d / (4503599627370496)))
+        end
+        local y = n
+        local function z(n)
+            local l
+            if (not n) then
+                n = y()
+                if (n == 0) then
+                    return ""
+                end
+            end
+            l = o.MHprwTug(u, e(1, 3), e(5, 6) + n - 1)
+            e(n)
+            local e = ""
+            for n = (1 + g), #l do
+                e = e .. o.MHprwTug(l, n, n)
+            end
+            return e
+        end
+        local g = #o.xZcvd_F_(s("1.0")) ~= 1
+        local e = n
+        local function m(...)
+            return {
+                ...
+            }, o.BlRXhMey("#", ...)
+        end
+        local function p()
+            local u = {}
+            local s = {}
+            local e = {}
+            local c = {
+                s,
+                u,
+                nil,
+                e
+            }
+            local e = n()
+            local r = {}
+            for d = 1, e do
+                local l = h()
+                local e
+                if (l == 3) then
+                    e = (h() ~= 0)
+                elseif (l == 2) then
+                    local n = k()
+                    if g and o.zkgSbzDt(o.xZcvd_F_(n), ".(0+)$") then
+                        n = o.xREYfxwa(n)
+                    end
+                    e = n
+                elseif (l == 0) then
+                    e = z()
+                end
+                r[d] = e
+            end
+            for c = 1, n() do
+                local e = h()
+                if (l(e, 1, 1) == 0) then
+                    local o = l(e, 2, 3)
+                    local h = l(e, 4, 6)
+                    local e = {
+                        f(),
+                        f(),
+                        nil,
+                        nil
+                    }
+                    if (o == 0) then
+                        e[t] = f()
+                        e[a] = f()
+                    elseif (o == 1) then
+                        e[t] = n()
+                    elseif (o == b[2]) then
+                        e[t] = n() - (65536)
+                    elseif (o == b[3]) then
+                        e[t] = n() - (65536)
+                        e[a] = f()
+                    end
+                    if (l(h, 1, 1) == 1) then
+                        e[d] = r[e[d]]
+                    end
+                    if (l(h, 2, 2) == 1) then
+                        e[t] = r[e[t]]
+                    end
+                    if (l(h, 3, 3) == 1) then
+                        e[a] = r[e[a]]
+                    end
+                    s[c] = e
+                end
+            end
+            for e = 1, n() do
+                u[e - (1)] = p()
+            end
+            c[3] = h()
+            return c
+        end
+        local function y(l, n, e)
+            local d = n
+            local d = e
+            return s(o.zkgSbzDt(o.zkgSbzDt(({
+                o.ji_kunXh(l)
+            })[2], n), e))
+        end
+        local function z(k, e, h)
+            local function le(...)
+                local f, b, u, ne, ee, l, _, y, g, s, p, n
+                local e = 0
+                while -1 < e do
+                    if 3 <= e then
+                        if e <= 4 then
+                            if 2 ~= e then
+                                for n = 43, 61 do
+                                    if e < 4 then
+                                        y = {}
+                                        g = {
+                                            ...
+                                        }
+                                        break
+                                    end
+                                    s = o.BlRXhMey("#", ...) - 1
+                                    p = {}
+                                    break
+                                end
+                            else
+                                s = o.BlRXhMey("#", ...) - 1
+                                p = {}
+                            end
+                        else
+                            if 6 == e then
+                                e = -2
+                            else
+                                n = r(7)
+                            end
+                        end
+                    else
+                        if 1 <= e then
+                            if 1 == e then
+                                u = r(6, 49, 3, 39, k)
+                                ee = m
+                                ne = 0
+                            else
+                                l = -41
+                                _ = -1
+                            end
+                        else
+                            f = r(6, 18, 1, 69, k)
+                            b = r(6, 41, 2, 53, k)
+                        end
+                    end
+                    e = e + 1
+                end
+                for e = 0, s do
+                    if (e >= u) then
+                        y[e - u] = g[e + 1]
+                    else
+                        n[e] = g[e + 1]
+                    end
+                end
+                local e = s - u + 1
+                local e
+                local r
+                local function u(...)
+                    while true do
+                        -- empty block
+                    end
+                end
+                while true do
+                    if l < -40 then
+                        l = l + 42
+                    end
+                    e = f[l]
+                    r = e[j]
+                    if r >= 27 then
+                        if 40 > r then
+                            if r <= 32 then
+                                if 29 >= r then
+                                    if 28 > r then
+                                        for r = 0, 3 do
+                                            if r > 1 then
+                                                if r ~= -1 then
+                                                    for o = 25, 88 do
+                                                        if 3 > r then
+                                                            n[e[d]] = h[e[t]]
+                                                            l = l + 1
+                                                            e = f[l]
+                                                            break
+                                                        end
+                                                        if (n[e[d]] == e[a]) then
+                                                            l = l + 1
+                                                        else
+                                                            l = e[t]
+                                                        end
+                                                        break
+                                                    end
+                                                else
+                                                    if (n[e[d]] == e[a]) then
+                                                        l = l + 1
+                                                    else
+                                                        l = e[t]
+                                                    end
+                                                end
+                                            else
+                                                if 0 < r then
+                                                    h[e[t]] = n[e[d]]
+                                                    l = l + 1
+                                                    e = f[l]
+                                                else
+                                                    n[e[d]] = (e[t] ~= 0)
+                                                    l = l + 1
+                                                    e = f[l]
+                                                end
+                                            end
+                                        end
+                                    else
+                                        if 29 > r then
+                                            do
+                                                return
+                                            end
+                                        else
+                                            l = e[t]
+                                        end
+                                    end
+                                else
+                                    if 30 >= r then
+                                        local e = e[d]
+                                        n[e](n[e + 1])
+                                    else
+                                        if 28 <= r then
+                                            for o = 15, 64 do
+                                                if r > 31 then
+                                                    local o
+                                                    for r = 0, 5 do
+                                                        if r > 2 then
+                                                            if 3 < r then
+                                                                if r >= 2 then
+                                                                    repeat
+                                                                        if 5 ~= r then
+                                                                            n[e[d]] = n[e[t]] + e[a]
+                                                                            l = l + 1
+                                                                            e = f[l]
+                                                                            break
+                                                                        end
+                                                                        n[e[d]][n[e[t]]] = n[e[a]]
+                                                                    until true
+                                                                else
+                                                                    n[e[d]] = n[e[t]] + e[a]
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                end
+                                                            else
+                                                                n[e[d]] = #n[e[t]]
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            end
+                                                        else
+                                                            if 1 > r then
+                                                                n[e[d]] = n[e[t]][e[a]]
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            else
+                                                                if -2 ~= r then
+                                                                    for h = 18, 71 do
+                                                                        if 1 < r then
+                                                                            o = e[d]
+                                                                            n[o] = n[o](n[o + 1])
+                                                                            l = l + 1
+                                                                            e = f[l]
+                                                                            break
+                                                                        end
+                                                                        n[e[d]] = n[e[t]][n[e[a]]]
+                                                                        l = l + 1
+                                                                        e = f[l]
+                                                                        break
+                                                                    end
+                                                                else
+                                                                    n[e[d]] = n[e[t]][n[e[a]]]
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                end
+                                                            end
+                                                        end
+                                                    end
+                                                    break
+                                                end
+                                                do
+                                                    return
+                                                end
+                                                break
+                                            end
+                                        else
+                                            do
+                                                return
+                                            end
+                                        end
+                                    end
+                                end
+                            else
+                                if 36 > r then
+                                    if 34 > r then
+                                        n[e[d]] = z(b[e[t]], nil, h)
+                                    else
+                                        if 34 == r then
+                                            n[e[d]] = z(b[e[t]], nil, h)
+                                        else
+                                            n[e[d]] = n[e[t]][n[e[a]]]
+                                        end
+                                    end
+                                else
+                                    if r > 37 then
+                                        if r > 38 then
+                                            l = e[t]
+                                        else
+                                            n[e[d]] = n[e[t]] + e[a]
+                                        end
+                                    else
+                                        if r > 33 then
+                                            for l = 29, 83 do
+                                                if r ~= 37 then
+                                                    local e = e[d]
+                                                    n[e] = n[e](n[e + 1])
+                                                    break
+                                                end
+                                                n(e[d], e[t])
+                                                break
+                                            end
+                                        else
+                                            local e = e[d]
+                                            n[e] = n[e](n[e + 1])
+                                        end
+                                    end
+                                end
+                            end
+                        else
+                            if 47 <= r then
+                                if r < 50 then
+                                    if r > 47 then
+                                        if 47 < r then
+                                            for l = 11, 69 do
+                                                if r > 48 then
+                                                    n[e[d]] = n[e[t]][e[a]]
+                                                    break
+                                                end
+                                                h[e[t]] = n[e[d]]
+                                                break
+                                            end
+                                        else
+                                            n[e[d]] = n[e[t]][e[a]]
+                                        end
+                                    else
+                                        local d = e[d]
+                                        local r = n[d]
+                                        local f = n[d + 2]
+                                        if (f > 0) then
+                                            if (r > n[d + 1]) then
+                                                l = e[t]
+                                            else
+                                                n[d + 3] = r
+                                            end
+                                        elseif (r < n[d + 1]) then
+                                            l = e[t]
+                                        else
+                                            n[d + 3] = r
+                                        end
+                                    end
+                                else
+                                    if 51 < r then
+                                        if 48 <= r then
+                                            for o = 23, 65 do
+                                                if 52 ~= r then
+                                                    n[e[d]] = {}
+                                                    break
+                                                end
+                                                for r = 0, 6 do
+                                                    if 2 >= r then
+                                                        if 0 < r then
+                                                            if -1 < r then
+                                                                repeat
+                                                                    if 1 ~= r then
+                                                                        n(e[d], e[t])
+                                                                        l = l + 1
+                                                                        e = f[l]
+                                                                        break
+                                                                    end
+                                                                    n(e[d], e[t])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                until true
+                                                            else
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            end
+                                                        else
+                                                            n(e[d], e[t])
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        end
+                                                    else
+                                                        if 5 > r then
+                                                            if 0 <= r then
+                                                                repeat
+                                                                    if r < 4 then
+                                                                        n(e[d], e[t])
+                                                                        l = l + 1
+                                                                        e = f[l]
+                                                                        break
+                                                                    end
+                                                                    n(e[d], e[t])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                until true
+                                                            else
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            end
+                                                        else
+                                                            if 2 <= r then
+                                                                for o = 36, 90 do
+                                                                    if r ~= 5 then
+                                                                        n(e[d], e[t])
+                                                                        break
+                                                                    end
+                                                                    n(e[d], e[t])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                    break
+                                                                end
+                                                            else
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            end
+                                                        end
+                                                    end
+                                                end
+                                                break
+                                            end
+                                        else
+                                            for r = 0, 6 do
+                                                if 2 >= r then
+                                                    if 0 < r then
+                                                        if -1 < r then
+                                                            repeat
+                                                                if 1 ~= r then
+                                                                    n(e[d], e[t])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                    break
+                                                                end
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            until true
+                                                        else
+                                                            n(e[d], e[t])
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        end
+                                                    else
+                                                        n(e[d], e[t])
+                                                        l = l + 1
+                                                        e = f[l]
+                                                    end
+                                                else
+                                                    if 5 > r then
+                                                        if 0 <= r then
+                                                            repeat
+                                                                if r < 4 then
+                                                                    n(e[d], e[t])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                    break
+                                                                end
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            until true
+                                                        else
+                                                            n(e[d], e[t])
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        end
+                                                    else
+                                                        if 2 <= r then
+                                                            for o = 36, 90 do
+                                                                if r ~= 5 then
+                                                                    n(e[d], e[t])
+                                                                    break
+                                                                end
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                                break
+                                                            end
+                                                        else
+                                                            n(e[d], e[t])
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        end
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    else
+                                        if r ~= 50 then
+                                            n[e[d]][e[t]] = n[e[a]]
+                                        else
+                                            n[e[d]] = {}
+                                        end
+                                    end
+                                end
+                            else
+                                if r < 43 then
+                                    if 40 >= r then
+                                        local d = e[d]
+                                        local r = n[d]
+                                        local f = n[d + 2]
+                                        if (f > 0) then
+                                            if (r > n[d + 1]) then
+                                                l = e[t]
+                                            else
+                                                n[d + 3] = r
+                                            end
+                                        elseif (r < n[d + 1]) then
+                                            l = e[t]
+                                        else
+                                            n[d + 3] = r
+                                        end
+                                    else
+                                        if r == 42 then
+                                            n[e[d]] = #n[e[t]]
+                                        else
+                                            if (n[e[d]] == e[a]) then
+                                                l = l + 1
+                                            else
+                                                l = e[t]
+                                            end
+                                        end
+                                    end
+                                else
+                                    if r > 44 then
+                                        if 44 <= r then
+                                            for l = 15, 98 do
+                                                if r > 45 then
+                                                    local r, a, h, f, c, o
+                                                    local l = 0
+                                                    while l > -1 do
+                                                        if 3 >= l then
+                                                            if 1 < l then
+                                                                if 1 <= l then
+                                                                    repeat
+                                                                        if l < 3 then
+                                                                            h = t
+                                                                            break
+                                                                        end
+                                                                        f = n
+                                                                    until true
+                                                                else
+                                                                    f = n
+                                                                end
+                                                            else
+                                                                if l ~= -4 then
+                                                                    repeat
+                                                                        if 0 ~= l then
+                                                                            a = d
+                                                                            break
+                                                                        end
+                                                                        r = e
+                                                                    until true
+                                                                else
+                                                                    r = e
+                                                                end
+                                                            end
+                                                        else
+                                                            if 5 >= l then
+                                                                if 2 <= l then
+                                                                    for e = 17, 60 do
+                                                                        if l ~= 5 then
+                                                                            c = f[r[h]]
+                                                                            break
+                                                                        end
+                                                                        o = r[a]
+                                                                        break
+                                                                    end
+                                                                else
+                                                                    o = r[a]
+                                                                end
+                                                            else
+                                                                if l == 6 then
+                                                                    n[o] = c
+                                                                else
+                                                                    l = -2
+                                                                end
+                                                            end
+                                                        end
+                                                        l = l + 1
+                                                    end
+                                                    break
+                                                end
+                                                local l = e[d]
+                                                n[l] = n[l](c(n, l + 1, e[t]))
+                                                break
+                                            end
+                                        else
+                                            local l = e[d]
+                                            n[l] = n[l](c(n, l + 1, e[t]))
+                                        end
+                                    else
+                                        if 40 ~= r then
+                                            for o = 19, 97 do
+                                                if 44 > r then
+                                                    n[e[d]] = n[e[t]][e[a]]
+                                                    break
+                                                end
+                                                local o
+                                                for r = 0, 5 do
+                                                    if 3 <= r then
+                                                        if 4 > r then
+                                                            n[e[d]] = h[e[t]]
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        else
+                                                            if r > 1 then
+                                                                for t = 15, 69 do
+                                                                    if 5 > r then
+                                                                        n[e[d]] = {}
+                                                                        l = l + 1
+                                                                        e = f[l]
+                                                                        break
+                                                                    end
+                                                                    n[e[d]] = {}
+                                                                    break
+                                                                end
+                                                            else
+                                                                n[e[d]] = {}
+                                                            end
+                                                        end
+                                                    else
+                                                        if r < 1 then
+                                                            n[e[d]] = n[e[t]][e[a]]
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        else
+                                                            if -1 < r then
+                                                                repeat
+                                                                    if r ~= 2 then
+                                                                        n[e[d]] = n[e[t]]
+                                                                        l = l + 1
+                                                                        e = f[l]
+                                                                        break
+                                                                    end
+                                                                    o = e[d]
+                                                                    n[o] = n[o](n[o + 1])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                until true
+                                                            else
+                                                                n[e[d]] = n[e[t]]
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            end
+                                                        end
+                                                    end
+                                                end
+                                                break
+                                            end
+                                        else
+                                            local o
+                                            for r = 0, 5 do
+                                                if 3 <= r then
+                                                    if 4 > r then
+                                                        n[e[d]] = h[e[t]]
+                                                        l = l + 1
+                                                        e = f[l]
+                                                    else
+                                                        if r > 1 then
+                                                            for t = 15, 69 do
+                                                                if 5 > r then
+                                                                    n[e[d]] = {}
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                    break
+                                                                end
+                                                                n[e[d]] = {}
+                                                                break
+                                                            end
+                                                        else
+                                                            n[e[d]] = {}
+                                                        end
+                                                    end
+                                                else
+                                                    if r < 1 then
+                                                        n[e[d]] = n[e[t]][e[a]]
+                                                        l = l + 1
+                                                        e = f[l]
+                                                    else
+                                                        if -1 < r then
+                                                            repeat
+                                                                if r ~= 2 then
+                                                                    n[e[d]] = n[e[t]]
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                    break
+                                                                end
+                                                                o = e[d]
+                                                                n[o] = n[o](n[o + 1])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            until true
+                                                        else
+                                                            n[e[d]] = n[e[t]]
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        end
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    else
+                        if r > 12 then
+                            if 19 < r then
+                                if r >= 23 then
+                                    if 25 > r then
+                                        if r > 20 then
+                                            for l = 49, 97 do
+                                                if r < 24 then
+                                                    local f, a, r, o, h
+                                                    local l = 0
+                                                    while l > -1 do
+                                                        if 2 >= l then
+                                                            if 0 >= l then
+                                                                f = e
+                                                            else
+                                                                if l > -2 then
+                                                                    for e = 16, 68 do
+                                                                        if 2 > l then
+                                                                            a = d
+                                                                            break
+                                                                        end
+                                                                        r = t
+                                                                        break
+                                                                    end
+                                                                else
+                                                                    r = t
+                                                                end
+                                                            end
+                                                        else
+                                                            if l <= 4 then
+                                                                if l >= 1 then
+                                                                    repeat
+                                                                        if l > 3 then
+                                                                            h = f[a]
+                                                                            break
+                                                                        end
+                                                                        o = f[r]
+                                                                    until true
+                                                                else
+                                                                    o = f[r]
+                                                                end
+                                                            else
+                                                                if 2 <= l then
+                                                                    for e = 26, 74 do
+                                                                        if l > 5 then
+                                                                            l = -2
+                                                                            break
+                                                                        end
+                                                                        n(h, o)
+                                                                        break
+                                                                    end
+                                                                else
+                                                                    l = -2
+                                                                end
+                                                            end
+                                                        end
+                                                        l = l + 1
+                                                    end
+                                                    break
+                                                end
+                                                local l = e[d]
+                                                n[l] = n[l](c(n, l + 1, e[t]))
+                                                break
+                                            end
+                                        else
+                                            local l = e[d]
+                                            n[l] = n[l](c(n, l + 1, e[t]))
+                                        end
+                                    else
+                                        if 21 ~= r then
+                                            for h = 23, 94 do
+                                                if r > 25 then
+                                                    n[e[d]] = n[e[t]] + e[a]
+                                                    break
+                                                end
+                                                local r, h
+                                                for a = 0, 3 do
+                                                    if 1 < a then
+                                                        if a >= -1 then
+                                                            for c = 26, 52 do
+                                                                if a ~= 2 then
+                                                                    r = e[d]
+                                                                    h = n[r]
+                                                                    for e = r + 1, e[t] do
+                                                                        o.HlgPASOY(h, n[e])
+                                                                    end
+                                                                    break
+                                                                end
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                                break
+                                                            end
+                                                        else
+                                                            r = e[d]
+                                                            h = n[r]
+                                                            for e = r + 1, e[t] do
+                                                                o.HlgPASOY(h, n[e])
+                                                            end
+                                                        end
+                                                    else
+                                                        if a >= -2 then
+                                                            for r = 21, 80 do
+                                                                if a ~= 0 then
+                                                                    n(e[d], e[t])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                    break
+                                                                end
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                                break
+                                                            end
+                                                        else
+                                                            n(e[d], e[t])
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        end
+                                                    end
+                                                end
+                                                break
+                                            end
+                                        else
+                                            local r, h
+                                            for a = 0, 3 do
+                                                if 1 < a then
+                                                    if a >= -1 then
+                                                        for c = 26, 52 do
+                                                            if a ~= 2 then
+                                                                r = e[d]
+                                                                h = n[r]
+                                                                for e = r + 1, e[t] do
+                                                                    o.HlgPASOY(h, n[e])
+                                                                end
+                                                                break
+                                                            end
+                                                            n(e[d], e[t])
+                                                            l = l + 1
+                                                            e = f[l]
+                                                            break
+                                                        end
+                                                    else
+                                                        r = e[d]
+                                                        h = n[r]
+                                                        for e = r + 1, e[t] do
+                                                            o.HlgPASOY(h, n[e])
+                                                        end
+                                                    end
+                                                else
+                                                    if a >= -2 then
+                                                        for r = 21, 80 do
+                                                            if a ~= 0 then
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                                break
+                                                            end
+                                                            n(e[d], e[t])
+                                                            l = l + 1
+                                                            e = f[l]
+                                                            break
+                                                        end
+                                                    else
+                                                        n(e[d], e[t])
+                                                        l = l + 1
+                                                        e = f[l]
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    end
+                                else
+                                    if 21 > r then
+                                        h[e[t]] = n[e[d]]
+                                    else
+                                        if 21 == r then
+                                            local l = e[d]
+                                            local d = n[l]
+                                            for e = l + 1, e[t] do
+                                                o.HlgPASOY(d, n[e])
+                                            end
+                                        else
+                                            local d = e[d]
+                                            local f = n[d + 2]
+                                            local r = n[d] + f
+                                            n[d] = r
+                                            if (f > 0) then
+                                                if (r <= n[d + 1]) then
+                                                    l = e[t]
+                                                    n[d + 3] = r
+                                                end
+                                            elseif (r >= n[d + 1]) then
+                                                l = e[t]
+                                                n[d + 3] = r
+                                            end
+                                        end
+                                    end
+                                end
+                            else
+                                if r > 15 then
+                                    if r > 17 then
+                                        if r >= 17 then
+                                            repeat
+                                                if 19 > r then
+                                                    n[e[d]] = n[e[t]][n[e[a]]]
+                                                    break
+                                                end
+                                                n[e[d]] = (e[t] ~= 0)
+                                            until true
+                                        else
+                                            n[e[d]] = (e[t] ~= 0)
+                                        end
+                                    else
+                                        if 13 <= r then
+                                            repeat
+                                                if r < 17 then
+                                                    local e = e[d]
+                                                    n[e] = n[e](n[e + 1])
+                                                    break
+                                                end
+                                                n[e[d]] = (e[t] ~= 0)
+                                            until true
+                                        else
+                                            local e = e[d]
+                                            n[e] = n[e](n[e + 1])
+                                        end
+                                    end
+                                else
+                                    if 14 <= r then
+                                        if r >= 11 then
+                                            repeat
+                                                if r > 14 then
+                                                    local e = e[d]
+                                                    n[e](n[e + 1])
+                                                    break
+                                                end
+                                                n[e[d]] = h[e[t]]
+                                            until true
+                                        else
+                                            local e = e[d]
+                                            n[e](n[e + 1])
+                                        end
+                                    else
+                                        if (n[e[d]] == e[a]) then
+                                            l = l + 1
+                                        else
+                                            l = e[t]
+                                        end
+                                    end
+                                end
+                            end
+                        else
+                            if r <= 5 then
+                                if r > 2 then
+                                    if 3 >= r then
+                                        local d = e[d]
+                                        local l = n[e[t]]
+                                        n[d + 1] = l
+                                        n[d] = l[e[a]]
+                                    else
+                                        if 2 ~= r then
+                                            repeat
+                                                if 4 ~= r then
+                                                    local d = e[d]
+                                                    local l = n[e[t]]
+                                                    n[d + 1] = l
+                                                    n[d] = l[e[a]]
+                                                    break
+                                                end
+                                                local l = e[d]
+                                                local d = n[l]
+                                                for e = l + 1, e[t] do
+                                                    o.HlgPASOY(d, n[e])
+                                                end
+                                            until true
+                                        else
+                                            local l = e[d]
+                                            local d = n[l]
+                                            for e = l + 1, e[t] do
+                                                o.HlgPASOY(d, n[e])
+                                            end
+                                        end
+                                    end
+                                else
+                                    if 0 < r then
+                                        if -3 <= r then
+                                            for f = 25, 92 do
+                                                if r ~= 2 then
+                                                    local d = e[d]
+                                                    local f = n[d + 2]
+                                                    local r = n[d] + f
+                                                    n[d] = r
+                                                    if (f > 0) then
+                                                        if (r <= n[d + 1]) then
+                                                            l = e[t]
+                                                            n[d + 3] = r
+                                                        end
+                                                    elseif (r >= n[d + 1]) then
+                                                        l = e[t]
+                                                        n[d + 3] = r
+                                                    end
+                                                    break
+                                                end
+                                                n[e[d]] = #n[e[t]]
+                                                break
+                                            end
+                                        else
+                                            local d = e[d]
+                                            local f = n[d + 2]
+                                            local r = n[d] + f
+                                            n[d] = r
+                                            if (f > 0) then
+                                                if (r <= n[d + 1]) then
+                                                    l = e[t]
+                                                    n[d + 3] = r
+                                                end
+                                            elseif (r >= n[d + 1]) then
+                                                l = e[t]
+                                                n[d + 3] = r
+                                            end
+                                        end
+                                    else
+                                        local o, g, s, u, z, b, k, r
+                                        for r = 0, 6 do
+                                            if 2 >= r then
+                                                if 0 >= r then
+                                                    o = e[d]
+                                                    g = n[e[t]]
+                                                    n[o + 1] = g
+                                                    n[o] = g[e[a]]
+                                                    l = l + 1
+                                                    e = f[l]
+                                                else
+                                                    if r ~= -3 then
+                                                        repeat
+                                                            if r ~= 1 then
+                                                                n(e[d], e[t])
+                                                                l = l + 1
+                                                                e = f[l]
+                                                                break
+                                                            end
+                                                            r = 0
+                                                            while r > -1 do
+                                                                if r > 2 then
+                                                                    if 4 < r then
+                                                                        if r == 5 then
+                                                                            n(k, b)
+                                                                        else
+                                                                            r = -2
+                                                                        end
+                                                                    else
+                                                                        if 4 ~= r then
+                                                                            b = s[z]
+                                                                        else
+                                                                            k = s[u]
+                                                                        end
+                                                                    end
+                                                                else
+                                                                    if r >= 1 then
+                                                                        if r >= 0 then
+                                                                            repeat
+                                                                                if r > 1 then
+                                                                                    z = t
+                                                                                    break
+                                                                                end
+                                                                                u = d
+                                                                            until true
+                                                                        else
+                                                                            u = d
+                                                                        end
+                                                                    else
+                                                                        s = e
+                                                                    end
+                                                                end
+                                                                r = r + 1
+                                                            end
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        until true
+                                                    else
+                                                        n(e[d], e[t])
+                                                        l = l + 1
+                                                        e = f[l]
+                                                    end
+                                                end
+                                            else
+                                                if 5 <= r then
+                                                    if 4 <= r then
+                                                        for o = 34, 77 do
+                                                            if 5 ~= r then
+                                                                n[e[d]] = n[e[t]]
+                                                                break
+                                                            end
+                                                            n[e[d]] = h[e[t]]
+                                                            l = l + 1
+                                                            e = f[l]
+                                                            break
+                                                        end
+                                                    else
+                                                        n[e[d]] = n[e[t]]
+                                                    end
+                                                else
+                                                    if r > 0 then
+                                                        repeat
+                                                            if 3 ~= r then
+                                                                n[e[d]] = n[e[t]]
+                                                                l = l + 1
+                                                                e = f[l]
+                                                                break
+                                                            end
+                                                            o = e[d]
+                                                            n[o] = n[o](c(n, o + 1, e[t]))
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        until true
+                                                    else
+                                                        n[e[d]] = n[e[t]]
+                                                        l = l + 1
+                                                        e = f[l]
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    end
+                                end
+                            else
+                                if r > 8 then
+                                    if 10 < r then
+                                        if 12 == r then
+                                            n[e[d]][e[t]] = n[e[a]]
+                                        else
+                                            n[e[d]][n[e[t]]] = n[e[a]]
+                                        end
+                                    else
+                                        if 8 < r then
+                                            for o = 44, 69 do
+                                                if r ~= 9 then
+                                                    n[e[d]][n[e[t]]] = n[e[a]]
+                                                    break
+                                                end
+                                                local r, o, h
+                                                for a = 0, 3 do
+                                                    if a < 2 then
+                                                        if a >= -2 then
+                                                            repeat
+                                                                if 1 ~= a then
+                                                                    n(e[d], e[t])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                    break
+                                                                end
+                                                                n[e[d]] = #n[e[t]]
+                                                                l = l + 1
+                                                                e = f[l]
+                                                            until true
+                                                        else
+                                                            n[e[d]] = #n[e[t]]
+                                                            l = l + 1
+                                                            e = f[l]
+                                                        end
+                                                    else
+                                                        if a > -1 then
+                                                            repeat
+                                                                if 3 > a then
+                                                                    n(e[d], e[t])
+                                                                    l = l + 1
+                                                                    e = f[l]
+                                                                    break
+                                                                end
+                                                                r = e[d]
+                                                                o = n[r]
+                                                                h = n[r + 2]
+                                                                if (h > 0) then
+                                                                    if (o > n[r + 1]) then
+                                                                        l = e[t]
+                                                                    else
+                                                                        n[r + 3] = o
+                                                                    end
+                                                                elseif (o < n[r + 1]) then
+                                                                    l = e[t]
+                                                                else
+                                                                    n[r + 3] = o
+                                                                end
+                                                            until true
+                                                        else
+                                                            r = e[d]
+                                                            o = n[r]
+                                                            h = n[r + 2]
+                                                            if (h > 0) then
+                                                                if (o > n[r + 1]) then
+                                                                    l = e[t]
+                                                                else
+                                                                    n[r + 3] = o
+                                                                end
+                                                            elseif (o < n[r + 1]) then
+                                                                l = e[t]
+                                                            else
+                                                                n[r + 3] = o
+                                                            end
+                                                        end
+                                                    end
+                                                end
+                                                break
+                                            end
+                                        else
+                                            n[e[d]][n[e[t]]] = n[e[a]]
+                                        end
+                                    end
+                                else
+                                    if 6 < r then
+                                        if 7 < r then
+                                            n[e[d]] = n[e[t]]
+                                        else
+                                            n[e[d]] = h[e[t]]
+                                        end
+                                    else
+                                        local r
+                                        n[e[d]][e[t]] = n[e[a]]
+                                        l = l + 1
+                                        e = f[l]
+                                        r = e[d]
+                                        n[r] = n[r](c(n, r + 1, e[t]))
+                                        l = l + 1
+                                        e = f[l]
+                                        n[e[d]] = n[e[t]]
+                                        l = l + 1
+                                        e = f[l]
+                                        n[e[d]] = n[e[t]]
+                                        l = l + 1
+                                        e = f[l]
+                                        r = e[d]
+                                        n[r](n[r + 1])
+                                        l = l + 1
+                                        e = f[l]
+                                        do
+                                            return
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    l = 1 + l
+                end
+            end
+            return le
+        end
+        local d = 255
+        local h = {}
+        local r = (1)
+        local t = ""
+        ;(function(n)
+            local l = n
+            local f = 0
+            local e = 0
+            l = {
+                (function(r)
+                    if f > 42 then
+                        return r
+                    end
+                    f = f + 1
+                    e = (e + 1615 - r) % 35
+                    return (e % 3 == 2 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (53)
+                        end
+                        return true
+                    end)("rlTDB") and l[3](664 + r)) or (e % 3 == 1 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (138)
+                        end
+                        return true
+                    end)("QjEzW") and l[1](r + 369)) or (e % 3 == 0 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (213)
+                            t = "%"
+                            d = {
+                                function()
+                                    d()
+                                end
+                            }
+                            t = t .. "d+"
+                        end
+                        return true
+                    end)("HszPh") and l[2](r + 225)) or r
+                end),
+                (function(a)
+                    if f > 35 then
+                        return a
+                    end
+                    f = f + 1
+                    e = (e + 4579 - a) % 51
+                    return (e % 3 == 0 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (12)
+                            t = {
+                                t .. ": a",
+                                t
+                            }
+                            h[r] = p()
+                            r = r + ((not o.ohSFBjkT) and 1 or 0)
+                            t[1] = ":" .. t[1]
+                            d[2] = 255
+                        end
+                        return true
+                    end)("vRPRU") and l[1](978 + a)) or (e % 3 == 1 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (101)
+                            h[r] = _()
+                            r = r + d
+                        end
+                        return true
+                    end)("FWqwU") and l[3](a + 967)) or (e % 3 == 2 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (140)
+                            d[2] = (d[2] * (y(function()
+                                h()
+                            end, c(t)) - y(d[1], c(t)))) + 1
+                            h[r] = {}
+                            d = d[2]
+                            r = r + d
+                        end
+                        return true
+                    end)("XSLIU") and l[2](a + 345)) or a
+                end),
+                (function(d)
+                    if f > 35 then
+                        return d
+                    end
+                    f = f + 1
+                    e = (e + 3411 - d) % 29
+                    return (e % 3 == 0 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (185)
+                        end
+                        return true
+                    end)("cBUXP") and l[3](969 + d)) or (e % 3 == 2 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (88)
+                        end
+                        return true
+                    end)("XmRDv") and l[1](d + 507)) or (e % 3 == 1 and (function(l)
+                        if not n[l] then
+                            e = e + 1
+                            n[l] = (224)
+                        end
+                        return true
+                    end)("FHIqd") and l[2](d + 829)) or d
+                end)
+            }
+            l[1](3134)
+        end)({})
+        local e = z(c(h))
+        return e(...)
     end
-end
-
-function GetClosestPlayer(Distance)
-    local Target
-        
-    for _, Player in pairs(workspace.PlayerCharacters:GetChildren()) do
-        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('HumanoidRootPart') then
-            if Player ~= LocalPlayer.Character then
-                if Player:FindFirstChild('HumanoidRootPart') then
-                    local Magnitude = (LocalPlayer.Character.HumanoidRootPart.Position - Player.HumanoidRootPart.Position).Magnitude
-                        
-                    if Magnitude <= Distance then
-                        Target = Player
-                        Distance = Magnitude
+    return y((function()
+        local n = {}
+        local e = 1
+        local l
+        if o.ohSFBjkT then
+            l = o.ohSFBjkT(y)
+        else
+            l = ""
+        end
+        if o.zkgSbzDt(l, o._ZVqMFWV) then
+            e = e + 0
+        else
+            e = e + 1
+        end
+        n[e] = 2
+        n[n[e] + 1] = 3
+        return n
+    end)(), ...)
+end)((function(e, n, l, d, t, r)
+    local r
+    if e >= 4 then
+        if e <= 5 then
+            if 1 <= e then
+                for r = 22, 88 do
+                    if 4 < e then
+                        local e = d
+                        do
+                            return function()
+                                local n = n(l, e(e, e), e(e, e))
+                                e(1)
+                                return n
+                            end
+                        end
+                        break
+                    end
+                    local e = d
+                    local t, d, o = t(2)
+                    do
+                        return function()
+                            local f, r, n, l = n(l, e(e, e), e(e, e) + 3)
+                            e(4)
+                            return (l * t) + (n * d) + (r * o) + f
+                        end
+                    end
+                    break
+                end
+            else
+                local e = d
+                do
+                    return function()
+                        local n = n(l, e(e, e), e(e, e))
+                        e(1)
+                        return n
                     end
                 end
             end
+        else
+            if e > 6 then
+                if e == 7 then
+                    do
+                        return setmetatable({}, {
+                            ["__call"] = function(e, l, t, d, n)
+                                if n then
+                                    return e[n]
+                                elseif d then
+                                    return e
+                                else
+                                    e[l] = t
+                                end
+                            end
+                        })
+                    end
+                else
+                    do
+                        return l(e, nil, l)
+                    end
+                end
+            else
+                do
+                    return t[l]
+                end
+            end
         end
-    end
-            
-    return Target
-end
-
-function IsParryOnCooldown()
-	local Indicator = PlayerGui.RoactUI:FindFirstChild('BottomStatusIndicators')
-    
-	if Indicator then
-		if Indicator.FrameContainer.SecondRowFrame.ActionCooldownsFrame.ParryActionCooldown.BarClipper.RealBar.Size.Y.Scale <= 1 then
-			return false
-		end
-	end
-    
-    return true
-end
-
-function Watcher(Player)
-    task.spawn(function()
-        local Melee, Shield
-        
-        repeat task.wait()
-            Melee = GetMelee(Player)
-            Shield = GetShield(Player)
-        until Melee and Shield
-        
-        if Player == LocalPlayer.Character then
-            LocalMelee = Melee
-            
-            if Axonware.HitboxExpander then
-                for _, Hitbox in pairs(LocalMelee:WaitForChild('Hitboxes'):GetChildren()) do
-                    for _, Point in pairs(Hitbox:GetChildren()) do
-                        if (Point:IsA('Attachment') and Point.Name == 'DmgPoint') then
-                            Point.Visible = true
-                            Point.Position += Vector3.new(0, math.random(-Axonware.HitboxSizeExpansion, Axonware.HitboxSizeExpansion), 0)
+    else
+        if e < 2 then
+            if e == 0 then
+                do
+                    return n(1), n(4, t, d, l, n), n(5, t, d, l)
+                end
+            else
+                do
+                    return function(n, e, l)
+                        if l then
+                            local e = (n / 2 ^ (e - 1)) % 2 ^ ((l - 1) - (e - 1) + 1)
+                            return e - e % 1
+                        else
+                            local e = 2 ^ (e - 1)
+                            return (n % (e + e) >= e) and 1 or 0
                         end
                     end
                 end
             end
         else
-            local Connetion
-            
-            Connetion = RunService.Heartbeat:Connect(function()
-                if not Player:IsDescendantOf(workspace.PlayerCharacters) then
-                    Connetion:Disconnect()
-                end
-                
-                if Axonware.AntiParry then
-                    task.spawn(function()
-                        if IsParry(Player, Melee.Name) then
-                            if (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('HumanoidRootPart')) then
-                                if Player:FindFirstChild('HumanoidRootPart') then
-                                    if (LocalPlayer.Character.HumanoidRootPart.Position - Player.HumanoidRootPart.Position).Magnitude <= Axonware.ParryDistance then
-                                        if (LocalMelee and LocalMelee.Parent == LocalPlayer.Character) then
-                                            LocalPlayer.Character.Humanoid:UnequipTools()
-                                            Shield:GetPropertyChangedSignal('Transparency'):wait()
-                                            LocalPlayer.Character.Humanoid:EquipTool(LocalMelee)
-                                		end
-                                    end
-                                end
-                            end
+            if -1 < e then
+                repeat
+                    if 3 > e then
+                        do
+                            return 16777216, 65536, 256
                         end
-                    end)
+                        break
+                    end
+                    do
+                        return n(1), n(4, t, d, l, n), n(5, t, d, l)
+                    end
+                until true
+            else
+                do
+                    return 16777216, 65536, 256
                 end
-                
-                if Axonware.AutoParry then
-                	if Melee.Parent == Player then
-	                    for _, Hitbox in pairs(Melee.Hitboxes:GetChildren()) do
-	                        task.spawn(function()
-	                            if IsSlash(Player, Melee.Name) then
-	                                if (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild('HumanoidRootPart')) then
-	                                    if (LocalPlayer.Character.HumanoidRootPart.Position - Hitbox.Position).Magnitude <= Axonware.ParryDistance then
-	                                        if (LocalMelee and not IsParryOnCooldown()) then
-	                                            if LocalMelee.Parent ~= LocalPlayer.Character then
-	                                                if Axonware.AutoEquipMeleeForParry then
-	                                                    LocalPlayer.Character.Humanoid:EquipTool(LocalMelee)
-	                                                end
-	                                            end
-	                                            
-	                                            keypress(0x46)
-	                                            task.wait()
-	                                            keyrelease(0x46)
-	                                        end
-	                                    end
-	                                end
-	                            end
-	                        end)
-	                    end
-					end	               
-                end
-            end)
+            end
         end
-    end)
-end
-
-local UserInterface = loadstring(game:HttpGet('https://raw.githubusercontent.com/amkenzo/axonware/main/libraries/user_interface.lua', true))()
-
-local Window = UserInterface:CreateWindow({
-    WindowName = 'Axonware';
-    Color = Color3.fromRGB(200, 200, 200);
-}, CoreGui)
-
-local CombatTab = Window:CreateTab('Combat')
-local SettingsTab = Window:CreateTab('Settings')
-
-local MeleeSection = CombatTab:CreateSection('Melee')
-local ParrySection = CombatTab:CreateSection('Parry')
-
-local UISection = SettingsTab:CreateSection('UI')
-
-MeleeSection:CreateToggle('Auto Slash', false, function(Value)
-    Axonware.AutoSlash = Value
-end)
-
-MeleeSection:CreateToggle('Auto Glory kill', false, function(Value)
-    Axonware.AutoGloryKill = Value
-end)
-
-MeleeSection:CreateSlider('Slash Distance', 1, 25, 10, true, function(Value)
-    Axonware.SlashDistance = tonumber(Value)
-end)
-
-MeleeSection:CreateToggle('Hitbox Expander', false, function(Value)
-    Axonware.HitboxExpander = Value
-end)
-
-MeleeSection:CreateSlider('Hitbox Size Expansion', 0, 5, 2.5, false, function(Value)
-    Axonware.HitboxSizeExpansion = tonumber(Value)
-end)
-
-ParrySection:CreateToggle('Anti Parry', false, function(Value)
-    Axonware.AntiParry = Value
-end)
-
-ParrySection:CreateToggle('Auto Parry', false, function(Value)
-    Axonware.AutoParry = Value
-end)
-
-ParrySection:CreateToggle('Auto Equip Melee For Parry', false, function(Value)
-    Axonware.AutoEquipMeleeForParry = Value
-end)
-
-ParrySection:CreateSlider('Parry Distance', 1, 25, 10, true, function(Value)
-    Axonware.ParryDistance = tonumber(Value)
-end)
-
-UIVisible = UISection:CreateToggle('Visible', true, function(Value)
-    Window:Toggle(Value)
-end):CreateKeybind('Semicolon')
-
-UISection:CreateColorpicker('Color', function(Value)
-    Window:ChangeColor(Value)
-end)
-
-for _, Player in pairs(workspace.PlayerCharacters:GetChildren()) do
-    Watcher(Player)
-end
-
-workspace.PlayerCharacters.ChildAdded:Connect(function(Player)
-    Watcher(Player)
-end)
-
-RunService.Heartbeat:Connect(function()
-    task.spawn(function()
-		local ClosestTarget = GetClosestPlayer(Axonware.SlashDistance)
-		        
-		if (ClosestTarget and ClosestTarget:FindFirstChild('Humanoid')) then
-			if (LocalMelee and LocalMelee.Parent == LocalPlayer.Character) then
-				local Melee = GetMelee(ClosestTarget)
-		                
-		        if (Melee and IsParry(ClosestTarget, Melee.Name)) then
-					return
-		        end
-		                
-		       	if tonumber(ClosestTarget.Humanoid.Health) > 20 then
-		            if Axonware.AutoSlash then
-						mouse1click()
-					end
-				else
-					if Axonware.AutoGloryKill then
-		                keypress(0x47)
-		                task.wait()
-						keyrelease(0x47)
-					end
-				end
-			end
-		end
-	end)
-end)
+    end
+end), ...)
+```
