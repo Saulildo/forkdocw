@@ -1,22 +1,11 @@
-// Khanware.js - Advanced Chat Overlay System v2.0
 (function() {
   'use strict';
 
   try {
-    console.log('[Khanware] Starting initialization...');
-
-    // ======================== CONFIGURATION ========================
-    // OpenAI API Key - Replace with your actual API key
-    const OPENAI_API_KEY = '';  // Example: 'sk-...'
-
-    // System Prompt - Customize the assistant's behavior
+    const OPENAI_API_KEY = '';
     const SYSTEM_PROMPT = `Be extremely concise and always respond on point, avoid all filler, excuses and pleasantries.`;
 
-    // ===============================================================
-
-    // Check if already loaded
     if (window.__khanware_loaded) {
-      console.log('[Khanware] Already loaded, toggling visibility...');
       if (window.__khanware_instance) {
         window.__khanware_instance.toggle();
       }
@@ -24,7 +13,6 @@
     }
     window.__khanware_loaded = true;
 
-    // Configuration
     const CONFIG = {
       namespace: 'khanware',
       dbName: 'KhanwareDB',
@@ -45,8 +33,6 @@
     class KhanwareChat {
       constructor() {
         try {
-          console.log('[Khanware] Creating KhanwareChat instance...');
-          
           this.state = this.loadState();
           this.currentChat = [{
             role: 'system',
@@ -59,17 +45,14 @@
           this.isResizing = false;
           this.dragOffset = { x: 0, y: 0 };
           
-          // Set API key from configuration
           if (OPENAI_API_KEY) {
             this.state.apiKey = OPENAI_API_KEY;
           }
           
           this.init().catch(err => {
-            console.error('[Khanware] Initialization error:', err);
             alert('Khanware failed to initialize: ' + err.message);
           });
         } catch (error) {
-          console.error('[Khanware] Constructor error:', error);
           alert('Khanware failed to load: ' + error.message);
         }
       }
@@ -88,7 +71,6 @@
             chatHistory: []
           };
         } catch (error) {
-          console.error('[Khanware] Error loading state:', error);
           return {
             visible: false,
             theme: 'dark',
@@ -106,18 +88,13 @@
         try {
           localStorage.setItem(`${CONFIG.namespace}_state`, JSON.stringify(this.state));
         } catch (error) {
-          console.error('[Khanware] Error saving state:', error);
         }
       }
 
       async init() {
-        console.log('[Khanware] Initializing components...');
-        
         try {
           await this.initDB();
         } catch (error) {
-          console.warn('[Khanware] IndexedDB initialization failed:', error);
-          // Continue without database support
         }
         
         this.createStyles();
@@ -125,9 +102,6 @@
         this.createOverlay();
         this.attachEventListeners();
         
-        console.log('[Khanware] Initialization complete!');
-        
-        // Auto-show on first load
         if (!this.state.apiKey) {
           this.show();
         }
@@ -139,13 +113,11 @@
             const request = indexedDB.open(CONFIG.dbName, CONFIG.dbVersion);
             
             request.onerror = () => {
-              console.error('[Khanware] Database error:', request.error);
               reject(request.error);
             };
             
             request.onsuccess = () => {
               this.db = request.result;
-              console.log('[Khanware] Database connected');
               resolve();
             };
             
@@ -160,7 +132,6 @@
               }
             };
           } catch (error) {
-            console.error('[Khanware] Database setup error:', error);
             reject(error);
           }
         });
@@ -168,9 +139,6 @@
 
       createFloatingButton() {
         try {
-          console.log('[Khanware] Creating floating button...');
-          
-          // Remove existing button if any
           const existingBtn = document.querySelector(`.${CONFIG.namespace}-floating-btn`);
           if (existingBtn) existingBtn.remove();
           
@@ -186,25 +154,18 @@
             e.stopPropagation();
             this.toggle();
           });
-          
-          console.log('[Khanware] Floating button created');
         } catch (error) {
-          console.error('[Khanware] Error creating floating button:', error);
         }
       }
 
       createStyles() {
         try {
-          console.log('[Khanware] Injecting styles...');
-          
-          // Remove existing styles if any
           const existingStyles = document.getElementById(`${CONFIG.namespace}-styles`);
           if (existingStyles) existingStyles.remove();
           
           const style = document.createElement('style');
           style.id = `${CONFIG.namespace}-styles`;
           style.textContent = `
-            /* Floating Button */
             .${CONFIG.namespace}-floating-btn {
               position: fixed !important;
               bottom: 20px !important;
@@ -238,7 +199,6 @@
               display: none !important;
             }
 
-            /* Main Overlay */
             .${CONFIG.namespace}-overlay {
               position: fixed !important;
               z-index: 2147483647 !important;
@@ -266,7 +226,6 @@
               flex-direction: column !important;
             }
 
-            /* Header */
             .${CONFIG.namespace}-header {
               padding: 16px 20px !important;
               display: flex !important;
@@ -292,7 +251,6 @@
               gap: 8px !important;
             }
 
-            /* Buttons */
             .${CONFIG.namespace}-btn {
               padding: 8px 16px !important;
               border: none !important;
@@ -333,7 +291,6 @@
               font-size: 18px !important;
             }
 
-            /* Settings Panel */
             .${CONFIG.namespace}-settings {
               padding: 16px !important;
               background: var(--settings-bg) !important;
@@ -381,7 +338,6 @@
               border-color: #667eea !important;
             }
 
-            /* Messages Area */
             .${CONFIG.namespace}-messages {
               flex: 1 !important;
               overflow-y: auto !important;
@@ -459,7 +415,6 @@
               font-family: 'Monaco', 'Courier New', monospace !important;
             }
 
-            /* Input Area */
             .${CONFIG.namespace}-input-area {
               padding: 16px !important;
               background: var(--input-area-bg) !important;
@@ -533,7 +488,6 @@
               font-size: 16px !important;
             }
 
-            /* Loading Animation */
             .${CONFIG.namespace}-loading {
               display: inline-flex !important;
               gap: 4px !important;
@@ -564,7 +518,6 @@
               }
             }
 
-            /* Theme Variables */
             .${CONFIG.namespace}-overlay[data-theme="dark"] {
               --bg-primary: #1a1a1a !important;
               --header-bg: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%) !important;
@@ -595,7 +548,6 @@
               --text-secondary: #6c757d !important;
             }
 
-            /* Mobile Responsive */
             @media (max-width: 768px) {
               .${CONFIG.namespace}-overlay {
                 width: 100% !important;
@@ -617,17 +569,12 @@
             }
           `;
           document.head.appendChild(style);
-          console.log('[Khanware] Styles injected');
         } catch (error) {
-          console.error('[Khanware] Error creating styles:', error);
         }
       }
 
       createOverlay() {
         try {
-          console.log('[Khanware] Creating overlay...');
-          
-          // Remove existing overlay if any
           const existingOverlay = document.querySelector(`.${CONFIG.namespace}-overlay`);
           if (existingOverlay) existingOverlay.remove();
           
@@ -712,7 +659,6 @@
 
           document.body.appendChild(this.overlay);
 
-          // Store element references
           this.elements = {
             messages: this.overlay.querySelector('#messages'),
             input: this.overlay.querySelector('#message-input'),
@@ -722,35 +668,25 @@
             attachedImages: this.overlay.querySelector('#attached-images'),
             header: this.overlay.querySelector(`.${CONFIG.namespace}-header`)
           };
-
-          console.log('[Khanware] Overlay created');
           
-          // Add welcome message
           this.addMessage('system', '👋 Welcome to Khanware! Please enter your OpenAI API key to get started.');
         } catch (error) {
-          console.error('[Khanware] Error creating overlay:', error);
         }
       }
 
       attachEventListeners() {
         try {
-          console.log('[Khanware] Attaching event listeners...');
-
-          // Keyboard shortcuts
           this.keydownHandler = (e) => {
-            // Toggle with Alt+K
             if (e.altKey && (e.key === 'k' || e.key === 'K')) {
               e.preventDefault();
               this.toggle();
             }
-            // Close with Escape
             if (e.key === 'Escape' && this.state.visible) {
               this.hide();
             }
           };
           document.addEventListener('keydown', this.keydownHandler);
 
-          // Overlay events
           this.overlay.addEventListener('click', (e) => {
             const action = e.target.dataset?.action;
             if (!action) return;
@@ -774,7 +710,6 @@
             }
           });
 
-          // Input changes
           this.elements.apiKey.addEventListener('change', (e) => {
             this.state.apiKey = e.target.value;
             this.saveState();
@@ -790,7 +725,6 @@
             this.saveState();
           });
 
-          // Message input
           this.elements.input.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.key === 'Enter') {
               e.preventDefault();
@@ -798,7 +732,6 @@
             }
           });
 
-          // Drag functionality (desktop only)
           if (!this.isMobile()) {
             let isDragging = false;
             let dragOffset = { x: 0, y: 0 };
@@ -828,7 +761,6 @@
             });
           }
 
-          // Image click handler
           this.imageClickHandler = (e) => {
             if (e.target.tagName === 'IMG' && 
                 this.state.visible && 
@@ -839,10 +771,7 @@
             }
           };
           document.addEventListener('click', this.imageClickHandler);
-
-          console.log('[Khanware] Event listeners attached');
         } catch (error) {
-          console.error('[Khanware] Error attaching event listeners:', error);
         }
       }
 
@@ -856,10 +785,8 @@
             return;
           }
 
-          // Add user message
           const userMessage = { role: 'user', content: message };
           
-          // Handle attached images
           if (this.attachedImages.length > 0) {
             userMessage.content = [
               { type: 'text', text: message },
@@ -875,12 +802,10 @@
           this.elements.input.value = '';
           this.clearAttachedImages();
 
-          // Create assistant message placeholder
           const assistantMsgId = this.addMessage('assistant', '', [], true);
 
           await this.streamCompletion(assistantMsgId);
         } catch (error) {
-          console.error('[Khanware] Send message error:', error);
           this.addMessage('system', `❌ Error: ${error.message}`);
         }
       }
@@ -942,20 +867,17 @@
                     this.updateMessage(messageId, fullContent);
                   }
                 } catch (e) {
-                  console.error('[Khanware] Parse error:', e);
                 }
               }
             }
           }
 
-          // Add to chat history
           this.currentChat.push({ role: 'assistant', content: fullContent });
           
           if (this.db) {
             await this.saveChatToHistory();
           }
         } catch (error) {
-          console.error('[Khanware] Stream completion error:', error);
           this.updateMessage(messageId, `❌ Error: ${error.message}`);
         }
       }
@@ -974,7 +896,6 @@
           const contentDiv = document.createElement('div');
           contentDiv.className = `${CONFIG.namespace}-message-content`;
           
-          // Add images if present
           if (images && images.length > 0) {
             const imagesHtml = images.map(img => 
               `<img src="${img}" style="max-width: 100%; margin: 8px 0; border-radius: 8px;">`
@@ -1002,7 +923,6 @@
 
           return messageId;
         } catch (error) {
-          console.error('[Khanware] Add message error:', error);
           return null;
         }
       }
@@ -1016,21 +936,18 @@
             this.elements.messages.scrollTop = this.elements.messages.scrollHeight;
           }
         } catch (error) {
-          console.error('[Khanware] Update message error:', error);
         }
       }
 
       formatMessage(content) {
         if (!content) return '';
         
-        // Escape HTML first
         const escapeHtml = (text) => {
           const div = document.createElement('div');
           div.textContent = text;
           return div.innerHTML;
         };
         
-        // Then apply formatting
         return content
           .split('```').map((part, i) => {
             if (i % 2 === 1) {
@@ -1051,7 +968,6 @@
           let width = img.naturalWidth || img.width;
           let height = img.naturalHeight || img.height;
           
-          // Resize if too large
           if (width > maxSize || height > maxSize) {
             const ratio = Math.min(maxSize / width, maxSize / height);
             width *= ratio;
@@ -1069,7 +985,6 @@
           
           this.addMessage('system', '✅ Image attached successfully!');
         } catch (error) {
-          console.error('[Khanware] Attach image error:', error);
           this.addMessage('system', `❌ Failed to attach image: ${error.message}`);
         }
       }
@@ -1087,7 +1002,6 @@
             </div>
           `).join('');
 
-          // Add remove handlers
           this.elements.attachedImages.querySelectorAll(`.${CONFIG.namespace}-remove-image`).forEach(btn => {
             btn.addEventListener('click', (e) => {
               const index = parseInt(e.target.dataset.index);
@@ -1095,7 +1009,6 @@
             });
           });
         } catch (error) {
-          console.error('[Khanware] Render attached images error:', error);
         }
       }
 
@@ -1118,13 +1031,12 @@
           
           const chatData = {
             timestamp: Date.now(),
-            messages: this.currentChat.slice(1), // Exclude system prompt
+            messages: this.currentChat.slice(1),
             model: this.state.model
           };
 
           await store.add(chatData);
         } catch (error) {
-          console.error('[Khanware] Save chat history error:', error);
         }
       }
 
@@ -1174,7 +1086,6 @@
 
       destroy() {
         try {
-          // Remove event listeners
           if (this.keydownHandler) {
             document.removeEventListener('keydown', this.keydownHandler);
           }
@@ -1182,38 +1093,27 @@
             document.removeEventListener('click', this.imageClickHandler);
           }
 
-          // Abort any ongoing requests
           if (this.abortController) {
             this.abortController.abort();
           }
 
-          // Close database
           if (this.db) {
             this.db.close();
           }
 
-          // Remove DOM elements
           this.overlay?.remove();
           this.floatingBtn?.remove();
           document.getElementById(`${CONFIG.namespace}-styles`)?.remove();
 
-          // Clear references
           window.__khanware_instance = null;
           window.__khanware_loaded = false;
-
-          console.log('[Khanware] Destroyed');
         } catch (error) {
-          console.error('[Khanware] Destroy error:', error);
         }
       }
     }
 
-    // Initialize
     window.__khanware_instance = new KhanwareChat();
-
-    console.log('[Khanware] ✨ AI Assistant loaded! Click the floating button or press Alt+K to toggle.');
   } catch (error) {
-    console.error('[Khanware] Fatal error:', error);
     alert('Khanware failed to load: ' + error.message);
   }
 })();
