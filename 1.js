@@ -10,8 +10,7 @@
     const OPENAI_API_KEY = '';  // Example: 'sk-...'
 
     // System Prompt - Customize the assistant's behavior
-    const SYSTEM_PROMPT = `You are a helpful AI assistant. Provide clear, accurate, and concise responses. 
-Be friendly and professional in your interactions.`;
+    const SYSTEM_PROMPT = `Be extremely concise and always respond on point, avoid all filler, excuses and pleasantries.`;
 
     // ===============================================================
 
