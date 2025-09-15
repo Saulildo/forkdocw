@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-
+// javascript:fetch("https://raw.githubusercontent.com/Saulildo/forkdocw/refs/heads/main/1.js").then(r=>r.text()).then(code=>eval(code));
   try {
     const OPENAI_API_KEY = '';
     const SYSTEM_PROMPT = `Be extremely concise and always respond on point, avoid all filler, excuses and pleasantries.`;
